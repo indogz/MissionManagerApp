@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.matteo.app1.ActivityTwo">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Data appear here"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/nome"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Data appear here"
+        android:text="nome"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/strada"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="strada"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/codice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Data appear here"
+        android:text="codice"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/descrizione"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="descrizione"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+
+
+    <Button
+        android:id="@+id/firebase_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Click to change" />
+
+</LinearLayout>
+
+
