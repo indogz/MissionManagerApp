@@ -26,6 +26,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -68,7 +69,6 @@ public class ActivityTwo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
 
-
         id = "";
 
         mFirebaseBtn = (Button) findViewById(R.id.firebase_btn);
@@ -78,77 +78,65 @@ public class ActivityTwo extends AppCompatActivity {
         codice = (TextView) findViewById(R.id.codice);
         descrizione = (TextView) findViewById(R.id.descrizione);
         //punta alla root
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Macchine").child("5");
-
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         identificativoVeicolo.setText("Mike Sierra " + id);
-        System.out.println("activity two");
+        System.out.println(id);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        Query lastQuery = mDatabase.child("Macchine").child(id).child("schede").orderByKey().limitToLast(1);
 
-        //mDatabase.child("5");
-
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.child("Macchine").child(id).child("nome").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                cleanField();
-
-                name=indirizzo="";
-                for (DataSnapshot snap : dataSnapshot.getChildren()) {
-
-                    System.out.println(snap);
-
-                    if (snap.getKey().equals("descrizioneEvento")) {
-                        descrizione.setText(snap.getValue().toString().trim());
-                    }
-
-                    if (snap.getKey().equals("first_name")) {
-                        name += snap.getValue().toString().trim();
-                        name += " ";
-                    }
-                    if (snap.getKey().equals("last_name")) {
-                        name += snap.getValue().toString().trim();
-                        name += " ";
-                    }
-
-                    if (snap.getKey().equals("codice")) {
-                        codice.setText(snap.getValue().toString().trim());
-                    }
-
-                    if (snap.getKey().equals("street")) {
-                        indirizzo += snap.getValue().toString().trim();
-                        indirizzo += " ";
-                    }
-                    if (snap.getKey().equals("house_number")) {
-                        indirizzo += snap.getValue().toString().trim();
-                        indirizzo += " ";
-                    }
-                    if (snap.getKey().equals("city")) {
-                        indirizzo += snap.getValue().toString().trim();
-                        indirizzo += " ";
-                    }
-                    System.out.println(indirizzo);
-                    strada.setText(indirizzo);
-                    nome.setText(name);
-
-                    if (snap.getKey().equals("primo")) {
-                        if (snap.getValue().toString().trim().equals("true")) {
-                            sendNotification();
-                            setPrimoFalse();
-                        }
-
-                    }
-                }
-
+                identificativoVeicolo.setText(dataSnapshot.getValue().toString().trim());
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
+        System.out.println("activity two");
+        System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°" + lastQuery);
+
+        lastQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                cleanField();
+                name = indirizzo = "";
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    name += " ";
+
+                    System.out.println(snap.getKey());
+                    String key=snap.getKey();
+                    descrizione.setText(snap.child("descrizioneEvento").getValue().toString());
+
+                    name += snap.child("first_name").getValue().toString();
+                    name += ", " + snap.child("last_name").getValue().toString();
+
+                    codice.setText(snap.child("codice").getValue().toString());
+
+                    indirizzo += snap.child("street").getValue().toString();
+                    indirizzo += " " + snap.child("house_number").getValue().toString();
+                    indirizzo += ", " + snap.child("city").getValue().toString();
+
+                    strada.setText(indirizzo);
+                    nome.setText(name);
+
+
+
+                    if (snap.child("primo").getValue().toString().trim().equals("true")) {
+                        System.out.println("dentro");
+                            sendNotification();
+                            setPrimoFalse(key);
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
 
         strada.addTextChangedListener(new TextWatcher() {
             @Override
@@ -166,53 +154,9 @@ public class ActivityTwo extends AppCompatActivity {
 
             }
         });
-
-
-
-
-/*
-        mtextView.addTextChangedListener(new TextWatcher() {
-
-        String name = mNameFiled.getText().toString().trim();
-                String email = mNameFiled.getText().toString().trim();
-
-                HashMap <String, String> dataMap = new HashMap<String, String>();
-
-                dataMap.put("Name", name);
-                dataMap.put("Email", email);
-
-                //create a child in root obj
-                //assign some value to that child
-                mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>(){
-                    public void onComplete(@NonNull Task<Void> task){
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Stored", Toast.LENGTH_SHORT).show();
-                            mtextView.setText("Text");
-                        } else{
-                            Toast.makeText(MainActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-                da qui metodo vero
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Toast.makeText(MainActivity.this, "Before", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(MainActivity.this, "onText", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Toast.makeText(MainActivity.this, "After", Toast.LENGTH_SHORT).show();
-
-            }
-        });*/
     }
-    public void cleanField(){
+
+    public void cleanField() {
         strada.setText("");
         nome.setText("");
         descrizione.setText("");
@@ -222,14 +166,14 @@ public class ActivityTwo extends AppCompatActivity {
         super.onResume();
     }
 
-
     protected void onPause() {
         super.onPause();
     }
 
-    public void setPrimoFalse() {
+    public void setPrimoFalse(String key) {
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Macchine").child(id).child("primo");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Macchine").child(id).child("schede").child(key).child("primo");
+        System.out.println(ref);
         ref.setValue("false");
     }
 
