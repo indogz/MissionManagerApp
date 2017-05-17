@@ -135,7 +135,9 @@ public class ActivityTwo extends AppCompatActivity {
 
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Qualche tipo di errore");
+            }
         });
 
         strada.addTextChangedListener(new TextWatcher() {

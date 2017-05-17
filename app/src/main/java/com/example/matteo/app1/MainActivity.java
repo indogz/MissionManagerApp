@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     protected EditText txtTagContent;
     protected String tagContent;
     protected byte[] language;
+    private ParcoMacchine parcoMacchine;
+    private InternetConnessionChecker internetConnessionChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,42 +85,34 @@ public class MainActivity extends AppCompatActivity {
         //punta alla root
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        mDatabase.child("Macchine");
 
+        parcoMacchine = new ParcoMacchine();
+        internetConnessionChecker = new InternetConnessionChecker(MainActivity.this);
+
+        System.out.println("Macchine disponibili: " + parcoMacchine.getMacchineDisponibili().toString().trim());
+
+
+        System.out.println(internetConnessionChecker.isConnectionAvailable());
         mFirebaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
-                intent.putExtra("id", id);
-                finish();
-                startActivity(intent);
 
-
+                getId();
+                System.out.println();
+                if (parcoMacchine.checkIfExist(id) && internetConnessionChecker.isConnectionAvailable()) {
+                    Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
+                    intent.putExtra("id", id);
+                    finish();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "Macchina non autorizzata", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
 /*
-        mtextView.addTextChangedListener(new TextWatcher() {
 
-        String name = mNameFiled.getText().toString().trim();
-                String email = mNameFiled.getText().toString().trim();
-
-                HashMap <String, String> dataMap = new HashMap<String, String>();
-
-                dataMap.put("Name", name);
-                dataMap.put("Email", email);
-
-                //create a child in root obj
-                //assign some value to that child
-                mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>(){
-                    public void onComplete(@NonNull Task<Void> task){
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Stored", Toast.LENGTH_SHORT).show();
-                            mtextView.setText("Text");
-                        } else{
-                            Toast.makeText(MainActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
                 da qui metodo vero
             @Override
@@ -144,12 +138,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param nfcAdapter
      */
-    private void viewAntennaStatus(NfcAdapter nfcAdapter) throws java.lang.NullPointerException{
-        try{
+    private void viewAntennaStatus(NfcAdapter nfcAdapter) throws java.lang.NullPointerException {
+        try {
 
-        if (nfcAdapter.isEnabled() != true) {
-            Toast.makeText(this, "NFC not enabled", Toast.LENGTH_LONG).show();
-        }}catch (java.lang.NullPointerException ex){
+            if (nfcAdapter.isEnabled() != true) {
+                Toast.makeText(this, "NFC not enabled", Toast.LENGTH_LONG).show();
+            }
+        } catch (java.lang.NullPointerException ex) {
             System.out.println("Eccezione");
         }
     }
@@ -447,5 +442,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No NDEF reoords found", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void getId() {
+        id = txtTagContent.getText().toString().trim();
     }
 }

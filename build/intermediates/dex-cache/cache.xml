@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4cd4afc06623f8d8a140751f947d0d08abb4b497">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9af7ec7971c8aeed6c6357fc6752cb6aff111066/classes.dex" />
+    </item>
+
+</items>
