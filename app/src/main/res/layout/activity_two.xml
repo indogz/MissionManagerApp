@@ -51,14 +51,33 @@
         android:textSize="20dp" />
 
 
-
-    <Button
-        android:id="@+id/firebase_btn"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Click to change" />
+        android:layout_below="@+id/descrizione"
+        android:background="@android:drawable/bottom_bar"
+        android:orientation="horizontal"
+        android:paddingBottom="1.0dip"
+        android:paddingLeft="4.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingTop="5.0dip">
 
+        <Button
+            android:id="@+id/firebase_btn"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="StartService"
+            android:text="@string/logStart" />
+
+        <Button
+            android:id="@+id/deny"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="StopService"
+            android:text="@string/logStop" />
+    </LinearLayout>
 </LinearLayout>
 
 

@@ -70,19 +70,12 @@ public class ActivityTwo extends AppCompatActivity {
         setContentView(R.layout.activity_two);
 
         id = "";
-
-        mFirebaseBtn = (Button) findViewById(R.id.firebase_btn);
-        identificativoVeicolo = (TextView) findViewById(R.id.textView);
-        nome = (TextView) findViewById(R.id.nome);
-        strada = (TextView) findViewById(R.id.strada);
-        codice = (TextView) findViewById(R.id.codice);
-        descrizione = (TextView) findViewById(R.id.descrizione);
-        //punta alla root
+        setComponents();
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         identificativoVeicolo.setText("Mike Sierra " + id);
-        System.out.println(id);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query lastQuery = mDatabase.child("Macchine").child(id).child("schede").orderByKey().limitToLast(1);
 
@@ -98,7 +91,6 @@ public class ActivityTwo extends AppCompatActivity {
         });
 
         System.out.println("activity two");
-        System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°" + lastQuery);
 
         lastQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -124,15 +116,12 @@ public class ActivityTwo extends AppCompatActivity {
                     strada.setText(indirizzo);
                     nome.setText(name);
 
-
-
                     if (snap.child("primo").getValue().toString().trim().equals("true")) {
                         System.out.println("dentro");
                             sendNotification();
                             setPrimoFalse(key);
                     }
                 }
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -158,10 +147,32 @@ public class ActivityTwo extends AppCompatActivity {
         });
     }
 
+    public void StartService(View v){
+        Intent intent=new Intent(this, CheckUpdateService.class);
+        startService(intent);
+
+    }
+
+    public void StopService(View view){
+        Intent intent=new Intent(this, CheckUpdateService.class);
+        CheckUpdateService.forceToStop();
+        stopService(intent);
+    }
+
     public void cleanField() {
         strada.setText("");
         nome.setText("");
         descrizione.setText("");
+    }
+
+    public void setComponents(){
+        mFirebaseBtn = (Button) findViewById(R.id.firebase_btn);
+        identificativoVeicolo = (TextView) findViewById(R.id.textView);
+        nome = (TextView) findViewById(R.id.nome);
+        strada = (TextView) findViewById(R.id.strada);
+        codice = (TextView) findViewById(R.id.codice);
+        descrizione = (TextView) findViewById(R.id.descrizione);
+
     }
 
     protected void onResume() {
@@ -188,7 +199,7 @@ public class ActivityTwo extends AppCompatActivity {
                         .setContentIntent(pendingIntent);
         NotificationManager mNotifyMgr =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-// Builds the notification and issues it.
+        // Builds the notification and issues it.
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALL);
         mBuilder.setSound(alarmSound);
         mNotifyMgr.notify(1, mBuilder.build());

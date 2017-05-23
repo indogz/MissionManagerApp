@@ -1,8 +1,10 @@
 package com.example.matteo.app1;
 
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected byte[] language;
     private ParcoMacchine parcoMacchine;
     private InternetConnessionChecker internetConnessionChecker;
+    private NfcConnectionChecker nfcConnectionChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         parcoMacchine = new ParcoMacchine();
         internetConnessionChecker = new InternetConnessionChecker(MainActivity.this);
+        nfcConnectionChecker = new NfcConnectionChecker(MainActivity.this);
 
         System.out.println("Macchine disponibili: " + parcoMacchine.getMacchineDisponibili().toString().trim());
 
@@ -110,27 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-/*
-
-
-                da qui metodo vero
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Toast.makeText(MainActivity.this, "Before", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(MainActivity.this, "onText", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Toast.makeText(MainActivity.this, "After", Toast.LENGTH_SHORT).show();
-
-            }
-        });*/
     }
 
     /**
@@ -167,7 +150,12 @@ public class MainActivity extends AppCompatActivity {
          * Declare intent filters to handle the intents that you want to intercept.
          */
         intentFilters = new IntentFilter[]{};
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+
+        if (nfcConnectionChecker.isConnectionAvailable()) {
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+        } else {
+            Toast.makeText(this, "NFC ERROR", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -178,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         enableForegroundDispatchSystem();
     }
 
@@ -189,7 +178,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void disableForegroundDispatchSystem() {
-        nfcAdapter.disableForegroundDispatch(this);
+
+        if (nfcConnectionChecker.isConnectionAvailable()) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
     }
 
     @Override
