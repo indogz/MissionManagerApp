@@ -2,6 +2,7 @@ package com.example.matteo.app1;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,9 +15,11 @@ import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -64,6 +67,14 @@ public class ActivityTwo extends AppCompatActivity {
     String indirizzo = "";
     String name = "";
 
+    private String child_macchine = "Macchine";
+    private String child_schede = "schede";
+    private String child_nominativo = "nome";
+
+    MyMainReceiver myMainReceiver;
+    Context context;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +82,21 @@ public class ActivityTwo extends AppCompatActivity {
 
         id = "";
         setComponents();
+        context = this.context;
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         identificativoVeicolo.setText("Mike Sierra " + id);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query lastQuery = mDatabase.child("Macchine").child(id).child("schede").orderByKey().limitToLast(1);
+        Query lastQuery = mDatabase.child(child_macchine).child(id).child(child_schede).orderByKey().limitToLast(1);
 
-        mDatabase.child("Macchine").child(id).child("nome").addValueEventListener(new ValueEventListener() {
+        mDatabase.child(child_macchine).child(id).child(child_nominativo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 identificativoVeicolo.setText(dataSnapshot.getValue().toString().trim());
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -95,19 +108,19 @@ public class ActivityTwo extends AppCompatActivity {
         lastQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                cleanField();
+                //cleanField();
                 name = indirizzo = "";
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                    name += " ";
+                   /* name += " ";
 
                     System.out.println(snap.getKey());
-                    String key=snap.getKey();
+                    String key = snap.getKey();
                     descrizione.setText(snap.child("descrizioneEvento").getValue().toString());
 
                     name += snap.child("first_name").getValue().toString();
                     name += ", " + snap.child("last_name").getValue().toString();
 
-                    codice.setText(snap.child("codice").getValue().toString());
+                    //5codice.setText(snap.child("codice").getValue().toString());
 
                     indirizzo += snap.child("street").getValue().toString();
                     indirizzo += " " + snap.child("house_number").getValue().toString();
@@ -115,17 +128,20 @@ public class ActivityTwo extends AppCompatActivity {
 
                     strada.setText(indirizzo);
                     nome.setText(name);
-
+*/
+                    String key = snap.getKey();
                     if (snap.child("primo").getValue().toString().trim().equals("true")) {
                         System.out.println("dentro");
-                            sendNotification();
-                            setPrimoFalse(key);
+                        sendNotification();
+                        setPrimoFalse(key);
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("Qualche tipo di errore");
+                Toast.makeText(ActivityTwo.this, databaseError.getDetails().toString().trim(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -147,15 +163,71 @@ public class ActivityTwo extends AppCompatActivity {
         });
     }
 
-    public void StartService(View v){
-        Intent intent=new Intent(this, CheckUpdateService.class);
+    @Override
+    protected void onStart() {
+        myMainReceiver = new MyMainReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(CheckUpdateService.ACTION_UPDATE_CNT);
+        intentFilter.addAction(CheckUpdateService.ACTION_UPDATE_MSG);
+        registerReceiver(myMainReceiver, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(myMainReceiver);
+        super.onStop();
+    }
+
+
+    private class MyMainReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+
+            if (action.equals(CheckUpdateService.ACTION_UPDATE_CNT)) {
+                int int_from_service = intent.getIntExtra(CheckUpdateService.KEY_INT_FROM_SERVICE, 0);
+                System.out.println(int_from_service);
+                codice.setText(String.valueOf(int_from_service));
+            } else if (action.equals(CheckUpdateService.ACTION_UPDATE_MSG)) {
+                String string_from_service = intent.getStringExtra(CheckUpdateService.KEY_STRING_FROM_SERVICE);
+
+                String nominativo, ind, cod, descr;
+
+                nominativo = intent.getStringExtra("nome");
+                ind = intent.getStringExtra("indirizzo");
+                //cod=intent.getStringExtra("codice").toString().trim();
+                descr = intent.getStringExtra("descrizione");
+
+                System.out.println("Nome: " + nominativo);
+                System.out.println("Indirizzo: " + ind);
+                System.out.println("Descrizione: " + descr);
+
+
+                nome.setText(nominativo);
+                strada.setText(ind);
+                //codice.setText(cod);
+                descrizione.setText(descr);
+
+                codice.setText(String.valueOf(string_from_service));
+                System.out.println(string_from_service);
+
+            }
+        }
+    }
+
+
+    public void StartService(View v) {
+        Intent intent = new Intent(this, CheckUpdateService.class);
         startService(intent);
 
     }
 
-    public void StopService(View view){
-        Intent intent=new Intent(this, CheckUpdateService.class);
-        CheckUpdateService.forceToStop();
+    public void StopService(View view) {
+        Intent intent = new Intent(this, CheckUpdateService.class);
+
         stopService(intent);
     }
 
@@ -165,7 +237,7 @@ public class ActivityTwo extends AppCompatActivity {
         descrizione.setText("");
     }
 
-    public void setComponents(){
+    public void setComponents() {
         mFirebaseBtn = (Button) findViewById(R.id.firebase_btn);
         identificativoVeicolo = (TextView) findViewById(R.id.textView);
         nome = (TextView) findViewById(R.id.nome);
