@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
     tools:context="com.example.matteo.app1.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Data appear here"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/nome"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nominativo pz"
+
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/strada"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="strada"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/codice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Codice"
+
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/descrizione"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="descrizione"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descrizione"
+        android:background="@android:drawable/bottom_bar"
+        android:orientation="horizontal"
+        android:paddingBottom="1.0dip"
+        android:paddingLeft="4.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingTop="5.0dip">
+
+        <Button
+            android:id="@+id/btn_operativo"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="StartService"
+            android:paddingRight="26dip"
+            android:text="@string/logStart" />
+
+
+        <Button
+            android:id="@+id/btn_deny"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="StopService"
+            android:text="@string/logStop" />
+    </LinearLayout>
+
+</LinearLayout>

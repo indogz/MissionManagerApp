@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 getId();
                 System.out.println();
                 if (parcoMacchine.checkIfExist(id) && internetConnessionChecker.isConnectionAvailable()) {
-                    Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
+                    Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                     intent.putExtra("id", id);
                     finish();
                     startActivity(intent);
