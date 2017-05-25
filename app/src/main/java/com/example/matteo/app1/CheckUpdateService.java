@@ -3,6 +3,8 @@ package com.example.matteo.app1;
 
 import android.app.Activity;
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -11,11 +13,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.LauncherApps;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.SoundEffectConstants;
 import android.widget.Toast;
@@ -27,6 +32,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static android.R.attr.id;
 
 /**
@@ -35,6 +43,7 @@ import static android.R.attr.id;
 
 public class CheckUpdateService extends Service {
 
+    private static final int ONGOING_NOTIFICATION_ID = 1;
     private DatabaseReference mDatabase;
     private String child_macchine = "Macchine";
     private String child_schede = "schede";
@@ -42,6 +51,8 @@ public class CheckUpdateService extends Service {
     private String name = "";
     private String indirizzo = "";
     String s = "";
+    Query lastQuery;
+    ValueEventListener listener;
 
     //from MyService to MainActivity
     final static String KEY_INT_FROM_SERVICE = "KEY_INT_FROM_SERVICE";
@@ -57,6 +68,7 @@ public class CheckUpdateService extends Service {
     MyServiceThread myServiceThread;
     int cnt;
     Bundle bundle = new Bundle();
+    private String identificativoVeicolo;
 
     @Nullable
     @Override
@@ -69,11 +81,30 @@ public class CheckUpdateService extends Service {
         Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_LONG).show();
         myServiceReceiver = new MyServiceReceiver();
         super.onCreate();
+
+
+        //identificativoVeicolo=intent.getStringExtra("id").toString().trim();
+
+        System.out.println("GRAZIE A DIO VA OLTRE L'ON CREATE");
+
+
+
     }
 
+    /**
+     * Servirebbe per ricevere dati dall'activity ma al momento non viene utilizzata
+     *
+     * @param intent
+     * @param flags
+     * @param startId
+     * @return
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(getApplicationContext(), "onStartCommand", Toast.LENGTH_LONG).show();
+
+        identificativoVeicolo=intent.getStringExtra("id").toString().trim();
+        Toast.makeText(getApplicationContext(), identificativoVeicolo, Toast.LENGTH_LONG).show();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_MSG_TO_SERVICE);
@@ -86,15 +117,40 @@ public class CheckUpdateService extends Service {
     }
 
 
-    
-
     @Override
     public void onDestroy() {
         Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_LONG).show();
         myServiceThread.setRunning(false);
         unregisterReceiver(myServiceReceiver);
+
+        myServiceThread.interrupt();
+        myServiceThread=null;
+
+        lastQuery.removeEventListener(listener);
+
+        stopSelf();
         super.onDestroy();
     }
+
+
+    protected PendingIntent pendingIntent;
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!")
+                        .setContentIntent(pendingIntent);
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALL);
+        mBuilder.setSound(alarmSound);
+        mNotifyMgr.notify(1, mBuilder.build());
+    }
+
+
+    /**************************BROADCAST***RECEIVER*********************************************************/
 
     public class MyServiceReceiver extends BroadcastReceiver {
 
@@ -102,6 +158,9 @@ public class CheckUpdateService extends Service {
         public void onReceive(Context context, Intent intent) {
 
             String action = intent.getAction();
+
+
+
             if (action.equals(ACTION_MSG_TO_SERVICE)) {
                 String msg = intent.getStringExtra(KEY_MSG_TO_SERVICE);
 
@@ -115,6 +174,9 @@ public class CheckUpdateService extends Service {
             }
         }
     }
+
+
+    /*******************THREAD**********************************************************************/
 
     private class MyServiceThread extends Thread {
 
@@ -133,9 +195,10 @@ public class CheckUpdateService extends Service {
 
 
             mDatabase = FirebaseDatabase.getInstance().getReference();
-            Query lastQuery = mDatabase.child(child_macchine).child("5").child(child_schede).orderByKey().limitToLast(1);
+            lastQuery = mDatabase.child(child_macchine).child(identificativoVeicolo).child(child_schede).orderByKey().limitToLast(1);
 
-            lastQuery.addValueEventListener(new ValueEventListener() {
+
+            listener=lastQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     name = indirizzo = "";
@@ -145,7 +208,7 @@ public class CheckUpdateService extends Service {
 
                         name += " ";
 
-                        String key = snap.getKey();
+
                         System.out.println(snap.getKey());
 
                         descrizione = (snap.child("descrizioneEvento").getValue().toString());
@@ -153,7 +216,8 @@ public class CheckUpdateService extends Service {
                         name += snap.child("first_name").getValue().toString();
                         name += ", " + snap.child("last_name").getValue().toString();
 
-                        //5codice.setText(snap.child("codice").getValue().toString());
+                        //codice.setText(snap.child("codice").getValue().toString());
+
 
                         codice = (snap.child("codice").getValue().toString());
 
@@ -167,10 +231,13 @@ public class CheckUpdateService extends Service {
                         System.out.println("*****" + name);
 
 
-                        bundle.putString("indirizzo", indirizzo);
-                        bundle.putString("codice", codice);
-                        bundle.putString("descrizione", descrizione);
-                        bundle.putString("nome", name);
+
+                        String key = snap.getKey();
+                        if (snap.child("primo").getValue().toString().trim().equals("true")) {
+                            System.out.println("dentro");
+                            sendNotification();
+                            //setPrimoFalse(key);
+                        }
 
                     }
                     Intent intent = new Intent();
@@ -180,19 +247,24 @@ public class CheckUpdateService extends Service {
                     intent.putExtra("codice", codice);
                     intent.putExtra("descrizione", descrizione);
                     intent.putExtra("nome", name);
+                    intent.putExtra("codice",codice);
 
                     sendBroadcast(intent);
-                    System.out.println("Funziona" + indirizzo);
-
-                }
+                    System.out.println("Funziona" + indirizzo);                }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+                    databaseError.getMessage();
                 }
             });
 
         }
     }
+
+
+
+
+
 }
 
 

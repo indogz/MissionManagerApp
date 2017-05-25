@@ -9,4 +9,10 @@
 
     <string name="logStart">Operativo</string>
     <string name="logStop">Smontante</string>
+    <string name="notification_title">Notification Title</string>
+    <string name="notification_message">Notification message</string>
+    <string name="ticker_text">Ticker text</string>
+
+
+
 </resources>

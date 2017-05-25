@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
@@ -17,6 +18,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.SoundEffectConstants;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -64,15 +68,20 @@ public class ActivityTwo extends AppCompatActivity {
     protected EditText txtTagContent;
     protected String tagContent;
     protected byte[] language;
-    String indirizzo = "";
-    String name = "";
+    protected String indirizzo = "";
+    protected String name = "";
 
     private String child_macchine = "Macchine";
     private String child_schede = "schede";
     private String child_nominativo = "nome";
 
-    MyMainReceiver myMainReceiver;
-    Context context;
+    protected MyMainReceiver myMainReceiver;
+    protected Context context;
+
+    protected Button btn_operativo;
+    protected Button btn_smontante;
+
+    Animation animation=null;
 
 
     @Override
@@ -87,6 +96,9 @@ public class ActivityTwo extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         identificativoVeicolo.setText("Mike Sierra " + id);
+
+        btn_operativo = (Button) findViewById(R.id.btn_operativo);
+        btn_smontante = (Button) findViewById(R.id.btn_deny);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query lastQuery = mDatabase.child(child_macchine).child(id).child(child_schede).orderByKey().limitToLast(1);
@@ -104,6 +116,15 @@ public class ActivityTwo extends AppCompatActivity {
         });
 
         System.out.println("activity two");
+
+        animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+
+        btn_operativo.startAnimation(animation);
+
 
         lastQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,8 +152,8 @@ public class ActivityTwo extends AppCompatActivity {
 */
                     String key = snap.getKey();
                     if (snap.child("primo").getValue().toString().trim().equals("true")) {
-                        System.out.println("dentro");
-                        sendNotification();
+                        // System.out.println("dentro");
+                        //sendNotification();
                         setPrimoFalse(key);
                     }
                 }
@@ -153,7 +174,7 @@ public class ActivityTwo extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(ActivityTwo.this, "onText", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ActivityTwo.this, "onText", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -170,12 +191,15 @@ public class ActivityTwo extends AppCompatActivity {
         intentFilter.addAction(CheckUpdateService.ACTION_UPDATE_CNT);
         intentFilter.addAction(CheckUpdateService.ACTION_UPDATE_MSG);
         registerReceiver(myMainReceiver, intentFilter);
+
         super.onStart();
     }
 
     @Override
     protected void onStop() {
         unregisterReceiver(myMainReceiver);
+        Toast.makeText(getApplicationContext(), "onStopDelbottone", Toast.LENGTH_LONG).show();
+
         super.onStop();
     }
 
@@ -198,7 +222,7 @@ public class ActivityTwo extends AppCompatActivity {
 
                 nominativo = intent.getStringExtra("nome");
                 ind = intent.getStringExtra("indirizzo");
-                //cod=intent.getStringExtra("codice").toString().trim();
+                cod = intent.getStringExtra("codice").toString().trim();
                 descr = intent.getStringExtra("descrizione");
 
                 System.out.println("Nome: " + nominativo);
@@ -208,10 +232,10 @@ public class ActivityTwo extends AppCompatActivity {
 
                 nome.setText(nominativo);
                 strada.setText(ind);
-                //codice.setText(cod);
+                codice.setText(cod);
                 descrizione.setText(descr);
 
-                codice.setText(String.valueOf(string_from_service));
+
                 System.out.println(string_from_service);
 
             }
@@ -221,15 +245,28 @@ public class ActivityTwo extends AppCompatActivity {
 
     public void StartService(View v) {
         Intent intent = new Intent(this, CheckUpdateService.class);
+        intent.putExtra("id",id);
+
+        btn_operativo.setBackgroundColor(getResources().getColor(R.color.colorOperativo));
+        btn_smontante.setBackgroundColor(Color.GRAY);
+
+        btn_operativo.startAnimation(animation);
+        btn_smontante.clearAnimation();
         startService(intent);
 
     }
 
     public void StopService(View view) {
         Intent intent = new Intent(this, CheckUpdateService.class);
+        btn_operativo.setBackgroundColor(Color.GRAY);
+        btn_smontante.setBackgroundColor(getResources().getColor(R.color.colorSmontante));
+
+        btn_smontante.startAnimation(animation);
+        btn_operativo.clearAnimation();
 
         stopService(intent);
     }
+
 
     public void cleanField() {
         strada.setText("");
@@ -276,6 +313,8 @@ public class ActivityTwo extends AppCompatActivity {
         mBuilder.setSound(alarmSound);
         mNotifyMgr.notify(1, mBuilder.build());
     }
+
+
 
 }
 
