@@ -55,9 +55,11 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_below="@+id/descrizione"
-        android:background="@android:drawable/bottom_bar"
+        android:gravity="center|bottom"
+        android:layout_weight="0.27"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="1.0dip"
         android:paddingLeft="4.0dip"
@@ -66,21 +68,24 @@
 
         <Button
             android:id="@+id/btn_operativo"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
+            style="@style/Widget.AppCompat.Button.Colored"
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:layout_weight="1.0"
             android:onClick="StartService"
+            android:layout_gravity="bottom"
             android:paddingRight="26dip"
             android:text="@string/logStart" />
 
 
         <Button
             android:id="@+id/btn_deny"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1.0"
+            android:layout_gravity="bottom"
             android:onClick="StopService"
             android:text="@string/logStop" />
     </LinearLayout>

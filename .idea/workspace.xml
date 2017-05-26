@@ -19,10 +19,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_navigation.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_navigation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
     </list>
     <ignored path="MissionManagerApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,17 +58,13 @@
       <file leaf-file-name="ActivityTwo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/ActivityTwo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="313">
               <caret line="314" column="5" selection-start-line="90" selection-start-column="0" selection-end-line="314" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
                 <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
                 <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-                <element signature="e#9837#9838#0" expanded="true" />
-                <element signature="e#9869#9870#0" expanded="true" />
-                <element signature="e#9901#9902#0" expanded="true" />
-                <element signature="e#9932#9933#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,24 +76,21 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="49" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="49" />
+            <state relative-caret-position="18">
+              <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
               <folding>
-                <element signature="e#2504#2522#0" expanded="true" />
-                <element signature="e#2842#2859#0" expanded="true" />
+                <element signature="e#2612#2630#0" expanded="true" />
+                <element signature="e#2998#3015#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app_bar_navigation.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+            <state relative-caret-position="108">
+              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -104,30 +98,26 @@
       </file>
       <file leaf-file-name="activity_two.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml">
-          <provider editor-type-id="android-designer2">
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="34" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NavigationActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NavigationActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="210" column="29" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
+            <state relative-caret-position="-1487">
+              <caret line="272" column="88" selection-start-line="272" selection-start-column="88" selection-end-line="272" selection-end-column="88" />
               <folding>
                 <element signature="method#onCancelled#0;class#4545:4874" expanded="false" />
                 <element signature="method#beforeTextChanged#0;class#7232:7696" expanded="false" />
                 <element signature="method#afterTextChanged#0;class#7232:7696" expanded="false" />
-                <element signature="e#11073#11074#0" expanded="true" />
-                <element signature="e#11105#11106#0" expanded="true" />
-                <element signature="e#11137#11138#0" expanded="true" />
-                <element signature="e#11168#11169#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,7 +126,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
+            <state relative-caret-position="1404">
               <caret line="107" column="84" selection-start-line="107" selection-start-column="84" selection-end-line="107" selection-end-column="84" />
               <folding>
                 <element signature="docComment;method#viewAntennaStatus#0;class#MainActivity#0" expanded="false" />
@@ -2105,19 +2095,18 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/CheckUpdateBroadcastReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/SchedaIntervento.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/CheckUpdateService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/ActivityTwo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_navigation.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_navigation.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1366" />
     <option name="y" value="24" />
     <option name="width" value="1366" />
     <option name="height" value="744" />
@@ -2147,8 +2136,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
@@ -2253,6 +2240,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2590,8 +2579,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2608,7 +2597,6 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18333334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2621,6 +2609,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -2641,6 +2630,93 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/ActivityTwo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4878">
+          <caret line="314" column="5" selection-start-line="90" selection-start-column="0" selection-end-line="314" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
+            <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
+            <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_navigation.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="49" />
+          <folding>
+            <element signature="e#2612#2630#0" expanded="true" />
+            <element signature="e#2998#3015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="210" column="29" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
+          <folding>
+            <element signature="method#onCancelled#0;class#4545:4874" expanded="false" />
+            <element signature="method#beforeTextChanged#0;class#7232:7696" expanded="false" />
+            <element signature="method#afterTextChanged#0;class#7232:7696" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="107" column="84" selection-start-line="107" selection-start-column="84" selection-end-line="107" selection-end-column="84" />
+          <folding>
+            <element signature="docComment;method#viewAntennaStatus#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#viewAntennaStatus#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#enableForegroundDispatchSystem#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#onResume#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onNewIntent#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#createNdefMessage#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#createNdefMessage#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#createTextRecord#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#createTextRecord#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#writeNdefMessage#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#writeNdefMessage#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#formatTag#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#formatTag#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#tglReadWriteOnClick#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#getTextFromNdefRecord#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getTextFromNdefRecord#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#readTextFromTag#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/CheckUpdateService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2660,10 +2736,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2687,10 +2759,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2714,10 +2782,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2741,10 +2805,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2768,10 +2828,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2795,10 +2851,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2823,10 +2875,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2850,10 +2898,6 @@
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2990,14 +3034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/CheckUpdateService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -3021,7 +3057,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
+        <state relative-caret-position="1404">
           <caret line="107" column="84" selection-start-line="107" selection-start-column="84" selection-end-line="107" selection-end-column="84" />
           <folding>
             <element signature="docComment;method#viewAntennaStatus#0;class#MainActivity#0" expanded="false" />
@@ -3045,47 +3081,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/ActivityTwo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="313">
           <caret line="314" column="5" selection-start-line="90" selection-start-column="0" selection-end-line="314" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#onCancelled#0;class#3316:3645" expanded="false" />
             <element signature="method#beforeTextChanged#0;class#5996:6460" expanded="false" />
             <element signature="method#afterTextChanged#0;class#5996:6460" expanded="false" />
-            <element signature="e#9837#9838#0" expanded="true" />
-            <element signature="e#9869#9870#0" expanded="true" />
-            <element signature="e#9901#9902#0" expanded="true" />
-            <element signature="e#9932#9933#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="210" column="29" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
-          <folding>
-            <element signature="method#onCancelled#0;class#4545:4874" expanded="false" />
-            <element signature="method#beforeTextChanged#0;class#7232:7696" expanded="false" />
-            <element signature="method#afterTextChanged#0;class#7232:7696" expanded="false" />
-            <element signature="e#11073#11074#0" expanded="true" />
-            <element signature="e#11105#11106#0" expanded="true" />
-            <element signature="e#11137#11138#0" expanded="true" />
-            <element signature="e#11168#11169#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_two.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3094,23 +3129,24 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="49" />
+        <state relative-caret-position="18">
+          <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
           <folding>
-            <element signature="e#2504#2522#0" expanded="true" />
-            <element signature="e#2842#2859#0" expanded="true" />
+            <element signature="e#2612#2630#0" expanded="true" />
+            <element signature="e#2998#3015#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_navigation.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/matteo/app1/NavigationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="-1487">
+          <caret line="272" column="88" selection-start-line="272" selection-start-column="88" selection-end-line="272" selection-end-column="88" />
+          <folding>
+            <element signature="method#onCancelled#0;class#4545:4874" expanded="false" />
+            <element signature="method#beforeTextChanged#0;class#7232:7696" expanded="false" />
+            <element signature="method#afterTextChanged#0;class#7232:7696" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

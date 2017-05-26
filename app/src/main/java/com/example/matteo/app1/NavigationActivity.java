@@ -270,7 +270,7 @@ public class NavigationActivity extends AppCompatActivity
         intent.putExtra("id",id);
 
         btn_operativo.setBackgroundColor(getResources().getColor(R.color.colorOperativo));
-        btn_smontante.setBackgroundColor(Color.GRAY);
+        btn_smontante.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         btn_operativo.startAnimation(animation);
         btn_smontante.clearAnimation();
@@ -280,7 +280,7 @@ public class NavigationActivity extends AppCompatActivity
 
     public void StopService(View view) {
         Intent intent = new Intent(this, CheckUpdateService.class);
-        btn_operativo.setBackgroundColor(Color.GRAY);
+        btn_operativo.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         btn_smontante.setBackgroundColor(getResources().getColor(R.color.colorSmontante));
 
         btn_smontante.startAnimation(animation);

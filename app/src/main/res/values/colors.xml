@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#3F51B5</color>
 
-    <color name="colorOperativo">#c6ff00</color>
-    <color name="colorSmontante">#ff7043</color>
+    <color name="colorOperativo">#388E3C</color>
+    <color name="colorSmontante">#FF6F00</color>
 </resources>

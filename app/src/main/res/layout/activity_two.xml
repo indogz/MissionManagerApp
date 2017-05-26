@@ -55,7 +55,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/descrizione"
-        android:background="@android:drawable/bottom_bar"
+
         android:orientation="horizontal"
         android:paddingBottom="1.0dip"
         android:paddingLeft="4.0dip"
@@ -64,7 +64,7 @@
 
         <Button
             android:id="@+id/btn_operativo"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -75,7 +75,7 @@
 
         <Button
             android:id="@+id/btn_deny"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
