@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.LauncherApps;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Binder;
@@ -64,11 +66,14 @@ public class CheckUpdateService extends Service {
     final static String KEY_MSG_TO_SERVICE = "KEY_MSG_TO_SERVICE";
     final static String ACTION_MSG_TO_SERVICE = "MSG_TO_SERVICE";
 
+    private String panicBotton = "";
+
     MyServiceReceiver myServiceReceiver;
     MyServiceThread myServiceThread;
     int cnt;
     Bundle bundle = new Bundle();
     private String identificativoVeicolo;
+    MediaPlayer mediaPlayer;
 
     @Nullable
     @Override
@@ -88,7 +93,6 @@ public class CheckUpdateService extends Service {
         System.out.println("GRAZIE A DIO VA OLTRE L'ON CREATE");
 
 
-
     }
 
     /**
@@ -103,11 +107,12 @@ public class CheckUpdateService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(getApplicationContext(), "onStartCommand", Toast.LENGTH_LONG).show();
 
-        identificativoVeicolo=intent.getStringExtra("id").toString().trim();
+        identificativoVeicolo = intent.getStringExtra("id").toString().trim();
         Toast.makeText(getApplicationContext(), identificativoVeicolo, Toast.LENGTH_LONG).show();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_MSG_TO_SERVICE);
+        intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(myServiceReceiver, intentFilter);
 
         myServiceThread = new MyServiceThread();
@@ -124,7 +129,11 @@ public class CheckUpdateService extends Service {
         unregisterReceiver(myServiceReceiver);
 
         myServiceThread.interrupt();
-        myServiceThread=null;
+        myServiceThread = null;
+        panicBotton = "";
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
 
         lastQuery.removeEventListener(listener);
 
@@ -132,9 +141,11 @@ public class CheckUpdateService extends Service {
         super.onDestroy();
     }
 
+    //private Intent resultIntent = new Intent(this, NavigationActivity.class);
+    protected PendingIntent pendingIntent;//= PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    protected PendingIntent pendingIntent;
     public void sendNotification() {
+
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -144,7 +155,8 @@ public class CheckUpdateService extends Service {
         NotificationManager mNotifyMgr =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         // Builds the notification and issues it.
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALL);
+        //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri alarmSound = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.alarm_two_tones);
         mBuilder.setSound(alarmSound);
         mNotifyMgr.notify(1, mBuilder.build());
     }
@@ -160,7 +172,6 @@ public class CheckUpdateService extends Service {
             String action = intent.getAction();
 
 
-
             if (action.equals(ACTION_MSG_TO_SERVICE)) {
                 String msg = intent.getStringExtra(KEY_MSG_TO_SERVICE);
 
@@ -172,6 +183,37 @@ public class CheckUpdateService extends Service {
                 i.putExtra(KEY_STRING_FROM_SERVICE, msg);
                 sendBroadcast(i);
             }
+
+            if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
+                int state = intent.getIntExtra("state", -1);
+                switch (state) {
+                    case 0:
+                        System.out.println("Headset is unplugged");
+                        if (panicBotton.equals("t")) {
+
+                            panicBotton = "";
+                            startPanicButton();
+                        }
+                        break;
+                    case 1:
+                        System.out.println("Headset is plugged");
+                        panicBotton += "t";
+                        System.out.println("MEEEEDDDDDDDDDDDIIIIIIIIAAAAAA " + mediaPlayer);
+                        if (mediaPlayer != null) {
+                            mediaPlayer.release();
+                        }
+                        break;
+                    default:
+                        System.out.println("I have no idea what the headset state is");
+                }
+                System.out.println("*************************** " + panicBotton);
+
+            }
+        }
+
+        public void startPanicButton() {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.panic_button);
+            mediaPlayer.start();
         }
     }
 
@@ -198,7 +240,7 @@ public class CheckUpdateService extends Service {
             lastQuery = mDatabase.child(child_macchine).child(identificativoVeicolo).child(child_schede).orderByKey().limitToLast(1);
 
 
-            listener=lastQuery.addValueEventListener(new ValueEventListener() {
+            listener = lastQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     name = indirizzo = "";
@@ -231,7 +273,6 @@ public class CheckUpdateService extends Service {
                         System.out.println("*****" + name);
 
 
-
                         String key = snap.getKey();
                         if (snap.child("primo").getValue().toString().trim().equals("true")) {
                             System.out.println("dentro");
@@ -247,10 +288,11 @@ public class CheckUpdateService extends Service {
                     intent.putExtra("codice", codice);
                     intent.putExtra("descrizione", descrizione);
                     intent.putExtra("nome", name);
-                    intent.putExtra("codice",codice);
+                    intent.putExtra("codice", codice);
 
                     sendBroadcast(intent);
-                    System.out.println("Funziona" + indirizzo);                }
+                    System.out.println("Funziona" + indirizzo);
+                }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -260,9 +302,6 @@ public class CheckUpdateService extends Service {
 
         }
     }
-
-
-
 
 
 }

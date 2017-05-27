@@ -1,10 +1,8 @@
 package com.example.matteo.app1;
 
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
-import android.nfc.NfcManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +26,10 @@ import android.support.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+
+import Controller.InternetConnessionChecker;
+import Controller.NfcConnectionChecker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         System.out.println(internetConnessionChecker.isConnectionAvailable());
+        if(!internetConnessionChecker.isConnectionAvailable()){
+            Toast.makeText(MainActivity.this, "INTERNET ERROR", Toast.LENGTH_SHORT).show();
+        }
         mFirebaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 getId();
                 System.out.println();
                 if (parcoMacchine.checkIfExist(id) && internetConnessionChecker.isConnectionAvailable()) {
-                    Intent intent = new Intent(MainActivity.this, SocketIOActivity.class);
+                    Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                     intent.putExtra("id", id);
                     finish();
                     startActivity(intent);

@@ -274,6 +274,7 @@ public class NavigationActivity extends AppCompatActivity
 
         btn_operativo.startAnimation(animation);
         btn_smontante.clearAnimation();
+        //qua viene startato il service
         startService(intent);
 
     }
@@ -376,6 +377,8 @@ public class NavigationActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent intent=new Intent(NavigationActivity.this, SocketIOActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
