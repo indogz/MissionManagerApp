@@ -40,6 +40,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import Controller.SchedaIntervento;
+import Tools.AESHelper;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,7 +95,11 @@ public class NavigationActivity extends AppCompatActivity
     protected Button btn_operativo;
     protected Button btn_smontante;
 
-    Animation animation=null;
+    private SchedaIntervento schedaIntervento;
+    private TextView myConsoleView;
+
+    private Animation animation = null;
+    private AESHelper aesHelper;
 
 
     @Override
@@ -92,12 +109,50 @@ public class NavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        schedaIntervento = new SchedaIntervento();
+        aesHelper = new AESHelper();
+        myConsoleView = (TextView) findViewById(R.id.consoleText);
+        addStringToConsole("Waiting for status...");
+
+        id = "";
+        setComponents();
+        context = this.context;
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+
+        schedaIntervento.setAes_key(id);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "RX Registred", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                try {
+                    schedaIntervento.encryptAll(aesHelper);
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (InvalidAlgorithmParameterException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                }
+
+
+                Gson gson = new Gson();
+                String myJson = gson.toJson(schedaIntervento);
+                addStringToConsole("Json sent: "+myJson);
+
+
             }
         });
 
@@ -111,12 +166,6 @@ public class NavigationActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        id = "";
-        setComponents();
-        context = this.context;
-
-        Intent intent = getIntent();
-        id = intent.getStringExtra("id");
         identificativoVeicolo.setText("Mike Sierra " + id);
 
         btn_operativo = (Button) findViewById(R.id.btn_operativo);
@@ -181,6 +230,7 @@ public class NavigationActivity extends AppCompatActivity
                 }
             }
 
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("Qualche tipo di errore");
@@ -221,6 +271,7 @@ public class NavigationActivity extends AppCompatActivity
     protected void onStop() {
         unregisterReceiver(myMainReceiver);
         Toast.makeText(getApplicationContext(), "onStopDelbottone", Toast.LENGTH_LONG).show();
+        addStringToConsole("onStopDelBottone");
 
         super.onStop();
     }
@@ -240,22 +291,16 @@ public class NavigationActivity extends AppCompatActivity
             } else if (action.equals(CheckUpdateService.ACTION_UPDATE_MSG)) {
                 String string_from_service = intent.getStringExtra(CheckUpdateService.KEY_STRING_FROM_SERVICE);
 
-                String nominativo, ind, cod, descr;
 
-                nominativo = intent.getStringExtra("nome");
-                ind = intent.getStringExtra("indirizzo");
-                cod = intent.getStringExtra("codice").toString().trim();
-                descr = intent.getStringExtra("descrizione");
+                schedaIntervento.setNome(intent.getStringExtra("nome"));
+                schedaIntervento.setIndirizzo(intent.getStringExtra("nome"));
+                schedaIntervento.setCodice(intent.getStringExtra("codice").toString().trim());
+                schedaIntervento.setDescrizione(intent.getStringExtra("descrizione"));
 
-                System.out.println("Nome: " + nominativo);
-                System.out.println("Indirizzo: " + ind);
-                System.out.println("Descrizione: " + descr);
-
-
-                nome.setText(nominativo);
-                strada.setText(ind);
-                codice.setText(cod);
-                descrizione.setText(descr);
+                nome.setText(schedaIntervento.getNome());
+                strada.setText(schedaIntervento.getIndirizzo());
+                codice.setText(schedaIntervento.getCodice());
+                descrizione.setText(schedaIntervento.getDescrizione());
 
 
                 System.out.println(string_from_service);
@@ -267,10 +312,11 @@ public class NavigationActivity extends AppCompatActivity
 
     public void StartService(View v) {
         Intent intent = new Intent(this, CheckUpdateService.class);
-        intent.putExtra("id",id);
+        intent.putExtra("id", id);
 
         btn_operativo.setBackgroundColor(getResources().getColor(R.color.colorOperativo));
         btn_smontante.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        addStringToConsole("Status: operativo\n Get ready for the next response");
 
         btn_operativo.startAnimation(animation);
         btn_smontante.clearAnimation();
@@ -283,6 +329,7 @@ public class NavigationActivity extends AppCompatActivity
         Intent intent = new Intent(this, CheckUpdateService.class);
         btn_operativo.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         btn_smontante.setBackgroundColor(getResources().getColor(R.color.colorSmontante));
+        addStringToConsole("Status: smontante\n Call won't be received");
 
         btn_smontante.startAnimation(animation);
         btn_operativo.clearAnimation();
@@ -377,7 +424,7 @@ public class NavigationActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent intent=new Intent(NavigationActivity.this, SocketIOActivity.class);
+            Intent intent = new Intent(NavigationActivity.this, SocketIOActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
@@ -394,5 +441,10 @@ public class NavigationActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void addStringToConsole(String str) {
+        myConsoleView.setText(myConsoleView.getText() + "\n" + str);
+
     }
 }

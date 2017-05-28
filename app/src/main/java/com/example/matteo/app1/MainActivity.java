@@ -1,6 +1,7 @@
 package com.example.matteo.app1;
 
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -26,13 +27,11 @@ import android.support.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLOutput;
 import java.util.Locale;
-
-import javax.crypto.SecretKey;
 
 import Controller.InternetConnessionChecker;
 import Controller.NfcConnectionChecker;
+import Controller.ParcoMacchine;
 import Tools.AESHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         id = "";
+        txtTagContent.setText("");
 
         mFirebaseBtn = (Button) findViewById(R.id.firebase_btn);
         identificativoVeicolo = (TextView) findViewById(R.id.textView);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         a = b = "";
         AESHelper aesHelper = new AESHelper();
         try {
-            a = aesHelper.encrypt("ciao", "chiave");
+            a = aesHelper.encrypt("5", "chiave");
             System.out.println("Criptata: " + a);
             b = aesHelper.decrypt(a, "chiave");
             System.out.println("Dectittato: " + b);
@@ -126,10 +126,16 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (nfcConnectionChecker.isConnectionAvailable() == false) {
+                    getId();
+                }
 
-                getId();
                 System.out.println();
                 if (parcoMacchine.checkIfExist(id) && internetConnessionChecker.isConnectionAvailable()) {
+                    final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme_AppBarOverlay);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
                     Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                     intent.putExtra("id", id);
                     finish();
@@ -180,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
             nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
         } else {
             Toast.makeText(this, "NFC ERROR", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -451,10 +458,21 @@ public class MainActivity extends AppCompatActivity {
         if (ndefRecords != null && ndefRecords.length > 0) {
             NdefRecord ndefRecord = ndefRecords[0];
             tagContent = getTextFromNdefRecord(ndefRecord);
-            txtTagContent.setText(tagContent);
 
-            id = tagContent;
-            nome.setText(txtTagContent.getText());
+            //txtTagContent.setText(tagContent);
+            AESHelper aesHelper = new AESHelper();
+            try {
+
+                id = aesHelper.decrypt(tagContent, "chiave");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+           //5 txtTagContent.setText(id);
+            for (int i=0;i<tagContent.length();i++){
+                txtTagContent.setText(txtTagContent.getText()+"*");
+            }
+            // id = tagContent;
+            nome.setText("Mike India " + id);
         } else {
             Toast.makeText(this, "No NDEF reoords found", Toast.LENGTH_SHORT).show();
         }

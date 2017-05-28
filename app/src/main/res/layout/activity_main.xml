@@ -9,19 +9,23 @@
     tools:context="com.example.matteo.app1.MainActivity">
 
 
+
     <TextView
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Data appear here"
-        android:text="nome"
+        android:text="Mike India"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        />
 
     <EditText
         android:id="@+id/txtTagContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:textAlignment="center"/>
 
 
     <Button
@@ -29,6 +33,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Click to change" />
+        android:text="Click to login"
+        android:background="@color/colorAccent"
+        android:textColor="@color/textColorAccent"/>
+
+
 
 </LinearLayout>

@@ -12,17 +12,20 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Data appear here"
-        android:text="TextView"
+        android:layout_height="60dp"
+        android:hint="ID"
+        android:text="Identificativo Veicolo"
+        android:paddingTop="10dp"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Nominativo pz"
+
 
         android:textAlignment="center"
         android:textSize="20dp" />
@@ -31,7 +34,7 @@
         android:id="@+id/strada"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="strada"
+        android:hint="Strada"
         android:textAlignment="center"
         android:textSize="20dp" />
 
@@ -48,10 +51,20 @@
         android:id="@+id/descrizione"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="descrizione"
+        android:hint="Descrizione"
         android:textAlignment="center"
         android:textSize="20dp" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/consoleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Console log"/>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -65,6 +78,8 @@
         android:paddingLeft="4.0dip"
         android:paddingRight="4.0dip"
         android:paddingTop="5.0dip">
+
+
 
         <Button
             android:id="@+id/btn_operativo"

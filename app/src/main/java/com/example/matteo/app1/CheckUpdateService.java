@@ -37,6 +37,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import Controller.SchedaIntervento;
+
 import static android.R.attr.id;
 
 /**
@@ -239,7 +241,7 @@ public class CheckUpdateService extends Service {
             mDatabase = FirebaseDatabase.getInstance().getReference();
             lastQuery = mDatabase.child(child_macchine).child(identificativoVeicolo).child(child_schede).orderByKey().limitToLast(1);
 
-
+            final SchedaIntervento schedaIntervento=new SchedaIntervento();
             listener = lastQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -254,18 +256,22 @@ public class CheckUpdateService extends Service {
                         System.out.println(snap.getKey());
 
                         descrizione = (snap.child("descrizioneEvento").getValue().toString());
+                        schedaIntervento.setDescrizione(descrizione);
 
                         name += snap.child("first_name").getValue().toString();
                         name += ", " + snap.child("last_name").getValue().toString();
+                        schedaIntervento.setNome(name);
 
                         //codice.setText(snap.child("codice").getValue().toString());
 
 
                         codice = (snap.child("codice").getValue().toString());
+                        schedaIntervento.setCodice(codice);
 
                         indirizzo += snap.child("street").getValue().toString();
                         indirizzo += " " + snap.child("house_number").getValue().toString();
                         indirizzo += ", " + snap.child("city").getValue().toString();
+                        schedaIntervento.setIndirizzo(indirizzo);
 
                         System.out.println("*****" + indirizzo);
                         System.out.println("*****" + codice);
@@ -284,11 +290,11 @@ public class CheckUpdateService extends Service {
                     Intent intent = new Intent();
                     intent.setAction(ACTION_UPDATE_MSG);
                     intent.putExtra(KEY_STRING_FROM_SERVICE, descrizione);
-                    intent.putExtra("indirizzo", indirizzo);
-                    intent.putExtra("codice", codice);
-                    intent.putExtra("descrizione", descrizione);
-                    intent.putExtra("nome", name);
-                    intent.putExtra("codice", codice);
+                    intent.putExtra("indirizzo", schedaIntervento.getIndirizzo());
+                    intent.putExtra("codice", schedaIntervento.getCodice());
+                    intent.putExtra("descrizione", schedaIntervento.getDescrizione());
+                    intent.putExtra("nome", schedaIntervento.getNome());
+                    intent.putExtra("codice", schedaIntervento.getCodice());
 
                     sendBroadcast(intent);
                     System.out.println("Funziona" + indirizzo);
