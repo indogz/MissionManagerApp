@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.matteo.app1.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation">
 
@@ -55,11 +55,11 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_gravity="bottom"
-        android:layout_below="@+id/descrizione"
-        android:gravity="center|bottom"
-        android:layout_weight="0.27"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/descrizione"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.27"
+        android:gravity="center|bottom"
         android:orientation="horizontal"
         android:paddingBottom="1.0dip"
         android:paddingLeft="4.0dip"
@@ -69,14 +69,14 @@
         <Button
             android:id="@+id/btn_operativo"
             style="@style/Widget.AppCompat.Button.Colored"
-
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_weight="1.0"
             android:onClick="StartService"
-            android:layout_gravity="bottom"
             android:paddingRight="26dip"
-            android:text="@string/logStart" />
+            android:text="@string/logStart"
+            android:textColor="@color/textColorAccent" />
 
 
         <Button
@@ -84,10 +84,11 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
             android:layout_gravity="bottom"
+            android:layout_weight="1.0"
             android:onClick="StopService"
-            android:text="@string/logStop" />
+            android:text="@string/logStop"
+            android:textColor="@color/textColorAccent" />
     </LinearLayout>
 
 </LinearLayout>

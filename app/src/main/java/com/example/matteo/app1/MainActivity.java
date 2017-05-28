@@ -26,10 +26,14 @@ import android.support.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLOutput;
 import java.util.Locale;
+
+import javax.crypto.SecretKey;
 
 import Controller.InternetConnessionChecker;
 import Controller.NfcConnectionChecker;
+import Tools.AESHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     private InternetConnessionChecker internetConnessionChecker;
     private NfcConnectionChecker nfcConnectionChecker;
 
+    public static String seedValue = "I AM UNBREAKABLE";
+    public static String MESSAGE = "No one can read this message without decrypting me.";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +97,21 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabase.child("Macchine");
 
+        String a, b;
+        a = b = "";
+        AESHelper aesHelper = new AESHelper();
+        try {
+            a = aesHelper.encrypt("ciao", "chiave");
+            System.out.println("Criptata: " + a);
+            b = aesHelper.decrypt(a, "chiave");
+            System.out.println("Dectittato: " + b);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         parcoMacchine = new ParcoMacchine();
         internetConnessionChecker = new InternetConnessionChecker(MainActivity.this);
         nfcConnectionChecker = new NfcConnectionChecker(MainActivity.this);
@@ -98,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         System.out.println(internetConnessionChecker.isConnectionAvailable());
-        if(!internetConnessionChecker.isConnectionAvailable()){
+        if (!internetConnessionChecker.isConnectionAvailable()) {
             Toast.makeText(MainActivity.this, "INTERNET ERROR", Toast.LENGTH_SHORT).show();
         }
         mFirebaseBtn.setOnClickListener(new View.OnClickListener() {
