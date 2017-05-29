@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private ParcoMacchine parcoMacchine;
     private InternetConnessionChecker internetConnessionChecker;
     private NfcConnectionChecker nfcConnectionChecker;
+    private Switch nfcLogin;
 
     public static String seedValue = "I AM UNBREAKABLE";
     public static String MESSAGE = "No one can read this message without decrypting me.";
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
         nfcAdapter = nfcAdapter.getDefaultAdapter(this);
         txtTagContent = (EditText) findViewById(R.id.txtTagContent);
+        nfcLogin=(Switch) findViewById(R.id.forceLogin);
+        Boolean forceLogin=false;
+
         try {
             viewAntennaStatus(nfcAdapter);
         } catch (java.lang.NullPointerException ex) {
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nfcConnectionChecker.isConnectionAvailable() == false) {
+                if (nfcConnectionChecker.isConnectionAvailable() == false || !nfcLogin.isChecked()) {
                     getId();
                 }
 
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MainActivity.this, "Macchina non autorizzata", Toast.LENGTH_SHORT).show();
+                   //oast.makeText(MainActivity.this, "Macchina non autorizzata", Toast.LENGTH_SHORT).show();
                 }
             }
         });

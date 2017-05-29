@@ -37,6 +37,6 @@
         app:elevation="0dp"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center_horizontal"
-        app:srcCompat="@android:drawable/ic_secure" />
+        app:srcCompat="@android:drawable/sym_call_outgoing" />
 
 </android.support.design.widget.CoordinatorLayout>

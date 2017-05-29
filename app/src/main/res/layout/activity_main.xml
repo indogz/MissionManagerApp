@@ -37,6 +37,13 @@
         android:background="@color/colorAccent"
         android:textColor="@color/textColorAccent"/>
 
+    <Switch
+        android:id="@+id/forceLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:checked="true"
+        android:text="NFC Login" />
 
 
 </LinearLayout>
