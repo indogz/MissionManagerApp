@@ -1,9 +1,6 @@
 package com.example.matteo.app1;
 
 
-import android.app.Activity;
-import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -11,20 +8,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.pm.LauncherApps;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
-import android.view.SoundEffectConstants;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -34,12 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import Controller.SchedaIntervento;
-
-import static android.R.attr.id;
+import Models.SchedaIntervento;
 
 /**
  * Created by matteo on 23/05/17.
@@ -251,9 +235,7 @@ public class CheckUpdateService extends Service {
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
 
                         name += " ";
-
-
-                        System.out.println(snap.getKey());
+                       // System.out.println(snap.getKey());
 
                         descrizione = (snap.child("descrizioneEvento").getValue().toString());
                         schedaIntervento.setDescrizione(descrizione);
@@ -261,6 +243,7 @@ public class CheckUpdateService extends Service {
                         name += snap.child("first_name").getValue().toString();
                         name += ", " + snap.child("last_name").getValue().toString();
                         schedaIntervento.setNome(name);
+
 
                         //codice.setText(snap.child("codice").getValue().toString());
 

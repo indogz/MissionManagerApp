@@ -9,6 +9,7 @@
     tools:context="com.example.matteo.app1.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -56,9 +57,10 @@
         android:textSize="20dp" />
 
     <ScrollView
+        android:id="@+id/consoleScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="40dp"
+        android:layout_weight="0.5">
         <TextView
             android:id="@+id/consoleText"
             android:layout_width="match_parent"
@@ -71,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/descrizione"
         android:layout_gravity="bottom"
-        android:layout_weight="0.27"
+        android:layout_weight="0"
         android:gravity="center|bottom"
         android:orientation="horizontal"
         android:paddingBottom="1.0dip"

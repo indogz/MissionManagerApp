@@ -11,6 +11,15 @@
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9af7ec7971c8aeed6c6357fc6752cb6aff111066/classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_e73cc64f055dd541ceff53411359b879bbce10cd/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/home/matteo/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.8.3/854b49396e1e9f9bb0ab025062ddb49c4ed65ca1/engine.io-client-0.8.3.jar"
         jumboMode="false"
@@ -54,15 +63,6 @@
         revision="25.0.2"
         sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_345302f47e2fab6fb3f14a3f4b92bc046ca4a3d8.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.2_390526c4cfc193f29f0c517b26edef1bae2b689e/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -119,6 +119,15 @@
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_f7703eeebd6829e801034d6335c15084e900df5e/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/home/matteo/.android/build-cache/4e8c15c9e2b535d896364e9545043fe412512302/output/jars/classes.jar"
         jumboMode="false"
@@ -135,6 +144,15 @@
         revision="25.0.2"
         sha1="e51c2f662bb72419632af5192553c37e33890a99">
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_b85ed913b9e8f6e6244323001b81a2b1ba0162fc.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_d86640886d1824fc9ce07ca7b5cfcbad223fa515/classes.dex" />
     </item>
     <item
         is-multidex="false"

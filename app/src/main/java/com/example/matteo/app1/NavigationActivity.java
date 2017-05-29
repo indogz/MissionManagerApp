@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
@@ -30,6 +29,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -43,6 +43,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -51,7 +52,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import Controller.SchedaIntervento;
+import Models.SchedaIntervento;
 import Tools.AESHelper;
 
 public class NavigationActivity extends AppCompatActivity
@@ -100,6 +101,7 @@ public class NavigationActivity extends AppCompatActivity
 
     private Animation animation = null;
     private AESHelper aesHelper;
+    private ScrollView scrollView;
 
 
     @Override
@@ -111,6 +113,7 @@ public class NavigationActivity extends AppCompatActivity
 
         schedaIntervento = new SchedaIntervento();
         aesHelper = new AESHelper();
+        scrollView = (ScrollView) findViewById(R.id.consoleScrollView);
         myConsoleView = (TextView) findViewById(R.id.consoleText);
         addStringToConsole("Waiting for status...");
 
@@ -150,9 +153,7 @@ public class NavigationActivity extends AppCompatActivity
 
                 Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);
-                addStringToConsole("Json sent: "+myJson);
-
-
+                addStringToConsole("Json sent: " + myJson);
             }
         });
 
@@ -256,6 +257,8 @@ public class NavigationActivity extends AppCompatActivity
         });
     }
 
+
+
     @Override
     protected void onStart() {
         myMainReceiver = new MyMainReceiver();
@@ -293,15 +296,21 @@ public class NavigationActivity extends AppCompatActivity
 
 
                 schedaIntervento.setNome(intent.getStringExtra("nome"));
-                schedaIntervento.setIndirizzo(intent.getStringExtra("nome"));
+                schedaIntervento.setIndirizzo(intent.getStringExtra("indirizzo"));
                 schedaIntervento.setCodice(intent.getStringExtra("codice").toString().trim());
                 schedaIntervento.setDescrizione(intent.getStringExtra("descrizione"));
+
 
                 nome.setText(schedaIntervento.getNome());
                 strada.setText(schedaIntervento.getIndirizzo());
                 codice.setText(schedaIntervento.getCodice());
                 descrizione.setText(schedaIntervento.getDescrizione());
-
+/*                if (schedaIntervento.getPrimo().equals("true")) {
+                    addStringToConsole("            Response needed");
+                } else {
+                    addStringToConsole("             Call managed yet");
+                }
+*/
 
                 System.out.println(string_from_service);
 
@@ -445,6 +454,10 @@ public class NavigationActivity extends AppCompatActivity
 
     public void addStringToConsole(String str) {
         myConsoleView.setText(myConsoleView.getText() + "\n" + str);
-
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 }

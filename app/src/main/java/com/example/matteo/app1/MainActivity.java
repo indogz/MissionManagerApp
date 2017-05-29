@@ -31,7 +31,7 @@ import java.util.Locale;
 
 import Controller.InternetConnessionChecker;
 import Controller.NfcConnectionChecker;
-import Controller.ParcoMacchine;
+import Models.ParcoMacchine;
 import Tools.AESHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         mDatabase.child("Macchine");
 
         String a, b;
-        a = b = "";
+
         AESHelper aesHelper = new AESHelper();
         try {
             a = aesHelper.encrypt("5", "chiave");
@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         nfcConnectionChecker = new NfcConnectionChecker(MainActivity.this);
 
         System.out.println("Macchine disponibili: " + parcoMacchine.getMacchineDisponibili().toString().trim());
-
 
         System.out.println(internetConnessionChecker.isConnectionAvailable());
         if (!internetConnessionChecker.isConnectionAvailable()) {
@@ -467,9 +466,9 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-           //5 txtTagContent.setText(id);
-            for (int i=0;i<tagContent.length();i++){
-                txtTagContent.setText(txtTagContent.getText()+"*");
+            //5 txtTagContent.setText(id);
+            for (int i = 0; i < tagContent.length(); i++) {
+                txtTagContent.setText(txtTagContent.getText() + "*");
             }
             // id = tagContent;
             nome.setText("Mike India " + id);
