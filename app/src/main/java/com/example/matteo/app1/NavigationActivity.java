@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.NotificationCompat;
@@ -54,6 +55,7 @@ import javax.crypto.NoSuchPaddingException;
 
 import Models.SchedaIntervento;
 import Tools.AESHelper;
+import Tools.HTTPHelper;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -108,6 +110,11 @@ public class NavigationActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -153,7 +160,10 @@ public class NavigationActivity extends AppCompatActivity
 
                 Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);
+                System.out.println(myJson);
+
                 addStringToConsole("Json sent: " + myJson);
+                System.out.println(HTTPHelper.httpPostRequest(NavigationActivity.this, "FUNZIONAAA!!!!!"));
             }
         });
 
@@ -256,7 +266,6 @@ public class NavigationActivity extends AppCompatActivity
             }
         });
     }
-
 
 
     @Override
@@ -436,8 +445,6 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(NavigationActivity.this, SocketIOActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 

@@ -136,10 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                 System.out.println();
                 if (parcoMacchine.checkIfExist(id) && internetConnessionChecker.isConnectionAvailable()) {
-                    final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme_AppBarOverlay);
-                    progressDialog.setIndeterminate(true);
-                    progressDialog.setMessage("Authenticating...");
-                    progressDialog.show();
+
                     Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                     intent.putExtra("id", id);
                     finish();
