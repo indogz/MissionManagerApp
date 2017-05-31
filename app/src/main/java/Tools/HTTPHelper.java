@@ -72,7 +72,7 @@ public class HTTPHelper {
             
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             System.out.println("Lista creata");
-            nameValuePairs.add(new BasicNameValuePair("nome", data));
+            nameValuePairs.add(new BasicNameValuePair("nome", data.trim()));
             System.out.println("Lista aggiornata");
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

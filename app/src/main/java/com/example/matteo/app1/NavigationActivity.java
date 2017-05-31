@@ -87,6 +87,7 @@ public class NavigationActivity extends AppCompatActivity
     protected String tagContent;
     protected byte[] language;
     protected String indirizzo = "";
+    private String addressToSend = "Piazza Ferretto Mestre";
     protected String name = "";
 
     private String child_macchine = "Macchine";
@@ -140,7 +141,11 @@ public class NavigationActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "RX Registred", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+
                 try {
+
+
                     schedaIntervento.encryptAll(aesHelper);
                 } catch (NoSuchPaddingException e) {
                     e.printStackTrace();
@@ -159,12 +164,15 @@ public class NavigationActivity extends AppCompatActivity
                 }
 
 
-                 Gson gson = new Gson();
+                Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);
                 System.out.println(myJson);
 
                 addStringToConsole("Json sent: " + myJson);
-                System.out.println(HTTPHelper.httpPostRequest(NavigationActivity.this, "FUNZIONAAA!!!!!"));
+                addStringToConsole("Indirizzo passato: "+ addressToSend);
+                System.out.println(HTTPHelper.httpPostRequest(NavigationActivity.this, "matteo"));
+
+
             }
         });
 
@@ -309,7 +317,8 @@ public class NavigationActivity extends AppCompatActivity
                 schedaIntervento.setIndirizzo(intent.getStringExtra("indirizzo"));
                 schedaIntervento.setCodice(intent.getStringExtra("codice").toString().trim());
                 schedaIntervento.setDescrizione(intent.getStringExtra("descrizione"));
-
+                addressToSend = intent.getStringExtra("indirizzo");
+                addStringToConsole(addressToSend);
 
                 nome.setText(schedaIntervento.getNome());
                 strada.setText(schedaIntervento.getIndirizzo());
@@ -446,7 +455,8 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(NavigationActivity.this, SocketIOActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Intent intent= new Intent(NavigationActivity.this, MapsActivity.class);
+            Intent intent = new Intent(NavigationActivity.this, MapsActivity.class);
+            intent.putExtra("address", addressToSend);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
 

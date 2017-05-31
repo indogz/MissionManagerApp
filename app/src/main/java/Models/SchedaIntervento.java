@@ -37,11 +37,11 @@ public class SchedaIntervento {
         this.descrizione = descrizione;
         this.codice = codice;
         this.indirizzo = indirizzo;
-        AESHelper aesHelper=new AESHelper();
+        AESHelper aesHelper = new AESHelper();
     }
 
     public SchedaIntervento() {
-        AESHelper aesHelper=new AESHelper();
+        AESHelper aesHelper = new AESHelper();
     }
 
     public void setNome(String nome) {
@@ -124,15 +124,19 @@ public class SchedaIntervento {
         this.primo = primo;
     }
 
-    public  void encryptAll(AESHelper aesHelper) throws NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
-        String key=this.getAes_key();
+    public void encryptAll(AESHelper aesHelper) throws NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        String key = this.getAes_key();
         this.setNome(aesHelper.encrypt(this.getNome(), key));
         this.setIndirizzo(aesHelper.encrypt(this.getIndirizzo(), key));
 
     }
 
-    public  void decryptAll(AESHelper aesHelper){
+
+
+    public void decryptAll(AESHelper aesHelper) {
 
 
     }
+
+
 }

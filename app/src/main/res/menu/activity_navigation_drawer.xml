@@ -8,8 +8,8 @@
             android:title="Show Confrim" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:icon="@mipmap/location"
+            android:title="Show location" />
 
         <item
             android:id="@+id/nav_manage"

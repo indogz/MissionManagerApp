@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e642dd48a1c32922058ed8b4489761e516bd8671">
+        sha1="5a9e42365593ff7a2dfe43740effc1ca69dbfa20">
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
     </item>
     <item
