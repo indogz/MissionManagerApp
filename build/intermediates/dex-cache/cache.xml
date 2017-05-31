@@ -20,130 +20,31 @@
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_e73cc64f055dd541ceff53411359b879bbce10cd/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.8.3/854b49396e1e9f9bb0ab025062ddb49c4ed65ca1/engine.io-client-0.8.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="854b49396e1e9f9bb0ab025062ddb49c4ed65ca1">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/engine.io-client-0.8.3_810aaf7ca0c2f66a95640c48f56b2afeaf62a2b9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/1174d9f0f5eae589891f0e4e93fee6289c5eed5d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_ace01d7ae84c549ae7a5c0df973a6f25b479c098.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/b58341f780eebe6a3da4e6314a60538da09a0b1c/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_78321f88aaacd3cdcbce1f6513e0130ac136abfe.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.5.0/4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83/okhttp-3.5.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/okhttp-3.5.0_1de46b6204119ee6df81c2b1202016b766bfcb1d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/7d418f510f39789fb51cb20fcfeac4b8efb57f5d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_345302f47e2fab6fb3f14a3f4b92bc046ca4a3d8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/cd8ee623a52e487321b1915ad376a61093ebad36/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_f5f2f5308ac4523abe9085a683ee41f3e0c1ebee.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/1563c3de8e3e80f1d493fe704cbaa209ce6b671c/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_07dd4506e605a73a057c21b63caa3ff9b20c8f21.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/c8cc77d9796c6dbc797b196347b113186b354d2d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_d6c725b15213bd2c3ca8976da1bf3cc8f458c26c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/f1c34c5487f8ddfe737d448aaa3af2a151dcbdb5/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_2e6f28e246e42f3ec8c7d46b7c82e7cd06cc338a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/2fe46dde159982c681f90936fa97d07c8fd2ffe4/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_28defdb9cc6efb48ba583952e8922fae6b3d22a2.jar" />
-    </item>
-    <item
         is-multidex="true"
-        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/matteo/.android/build-cache/66d81179c35f4f8fb964b359a8595c09b7779d52/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="de71d80c1e852dbb2c16a975543bb2bc170cbd7f">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
+        sha1="4eeba61bbc47e49a5fbdfd9aa21af5d10bf4df7c">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_52438d9f76ffe15292df0d7de7db7b2b504251bd/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jar="/home/matteo/.android/build-cache/10355c19163c42a88d8260f86c7ca4b5fa65ab52/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_f7703eeebd6829e801034d6335c15084e900df5e/classes.dex" />
+        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2894c714e9609f634405111c657f6dddb1adce3b/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/4e8c15c9e2b535d896364e9545043fe412512302/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/matteo/.android/build-cache/0ca223ac45db1b3942bed2da368b144f5d65fa72/output/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_c650317656d5681d64c488da33e35b4cc11eb734.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/7d17b9b551a505acccd55f5e182ccc35272401b0/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e51c2f662bb72419632af5192553c37e33890a99">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_b85ed913b9e8f6e6244323001b81a2b1ba0162fc.jar" />
+        sha1="b50fe5288bba9d1635ba619bd3c308319205543e">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_88cb79745cdaf386a69cf9814d9a56372325da3f/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -155,112 +56,22 @@
         <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_d86640886d1824fc9ce07ca7b5cfcbad223fa515/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/d3e21757ece4f74d45fb5deb5ac9f6e01badc72e/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_c81de6f5d6b2db1f8dbc9cfe76b8ee004ba3bcb4.jar" />
+        sha1="e642dd48a1c32922058ed8b4489761e516bd8671">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/okio-1.11.0_472e264c2f9e82e8af31c7df09f8c4c4155dadd7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/aec06de05634565a746f7dc1cd44bbdfcb08113e/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_3c18864fd11cd89dc1ddb85df0d2392820f460c5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/1eea4c1fd2070510b5cf167ab7644c783d34d17e/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_313080df5399e62e744fcf34c24da91f6c20f3b1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/128a1c60ecbf2a18faa5ca3ac01daea1a127abb7/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_95690ca34d8ceaaddfdf30b5832b2dd0007ff9c2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/b0c0d7ca99b10cc1c6ff134e38d23125471fcc95/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_26737c73073e261224e36169af8c8c531ff4240a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/46b798fdaa8beb04623b2fee223a8693c5fea4d6/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_99ea64d2ff9a7487247e6a2746b46d2b78ff5c11.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/e8a4fdf7e9d4d821119f25e762cca3af55672fd6/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_2908fee9ee2ab6b68f2e4e69ef62315fa20ce35e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/b895668bfa9122c7acaeed19f753ab171f32d59f/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_ab7d2dd7b1cf33959d7927fce7cce53e6be24d58.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/c44d737b06e62e97247c693c9c930b423433a28d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_bbd8884dd3c97b8686a4d51dc3fa63e692a0533c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.android/build-cache/2d2fc9b9605820a91052f9c5aee7266c4a6ddef7/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/classes_1167a82bd6ab68fbc6f2dd3219b31858ee91abe9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/matteo/.gradle/caches/modules-2/files-2.1/io.socket/socket.io-client/0.8.3/b30500232ff0668a47c9f91f02e6935457a52fb5/socket.io-client-0.8.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b30500232ff0668a47c9f91f02e6935457a52fb5">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/pre-dexed/debug/socket.io-client-0.8.3_26a91db9222255c2a73e9273b9cb6f0dad8f313e.jar" />
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_f7703eeebd6829e801034d6335c15084e900df5e/classes.dex" />
     </item>
 
 </items>

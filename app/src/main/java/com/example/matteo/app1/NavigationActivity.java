@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -158,7 +159,7 @@ public class NavigationActivity extends AppCompatActivity
                 }
 
 
-                Gson gson = new Gson();
+                 Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);
                 System.out.println(myJson);
 
@@ -445,7 +446,8 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(NavigationActivity.this, SocketIOActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent= new Intent(NavigationActivity.this, MapsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

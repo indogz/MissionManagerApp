@@ -83,10 +83,10 @@ public class HTTPHelper {
 
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block
-            System.out.println("PORCODDIO NUMERO UNO");
+            System.out.println("ECCEZIONE NUMERO UNO");
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            System.out.println("PORCODDIO NUMERO DUE");
+            System.out.println("ECCEZIONE NUMERO DUE");
         }
 
         return "Fino alla fine ci è arrivato";
