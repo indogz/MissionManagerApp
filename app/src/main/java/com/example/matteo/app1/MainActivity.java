@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         nfcAdapter = nfcAdapter.getDefaultAdapter(this);
         txtTagContent = (EditText) findViewById(R.id.txtTagContent);
-        nfcLogin=(Switch) findViewById(R.id.forceLogin);
-        Boolean forceLogin=false;
+        nfcLogin = (Switch) findViewById(R.id.forceLogin);
+        Boolean forceLogin = false;
 
         try {
             viewAntennaStatus(nfcAdapter);
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     startActivity(intent);
                 } else {
-                   //oast.makeText(MainActivity.this, "Macchina non autorizzata", Toast.LENGTH_SHORT).show();
+                    //oast.makeText(MainActivity.this, "Macchina non autorizzata", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void viewAntennaStatus(NfcAdapter nfcAdapter) throws java.lang.NullPointerException {
         try {
-
             if (nfcAdapter.isEnabled() != true) {
                 Toast.makeText(this, "NFC not enabled", Toast.LENGTH_LONG).show();
             }
@@ -199,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         enableForegroundDispatchSystem();
     }
 
@@ -211,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void disableForegroundDispatchSystem() {
-
         if (nfcConnectionChecker.isConnectionAvailable()) {
             nfcAdapter.disableForegroundDispatch(this);
         }
@@ -220,15 +217,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
         if (intent.hasExtra(NfcAdapter.EXTRA_TAG)) {
             Toast.makeText(this, "NfcIntent detected", Toast.LENGTH_SHORT).show();
 
             //Check which mode is selected (read or write)
-
-
             //READ MODE
-
             /**
              *Extra containing an array of NdefMessage present on the discovered tag.
              *This extra is mandatory for ACTION_NDEF_DISCOVERED intents, and optional
@@ -237,8 +230,11 @@ public class MainActivity extends AppCompatActivity {
              * Most NDEF tags have only one NDEF message, but we use an array for future compatibility.
              * See more at: https://developer.android.com/guide/topics/connectivity/nfc/nfc.html
              * and: https://developer.android.com/reference/android/nfc/NfcAdapter.html#EXTRA_NDEF_MESSAGES
+             * and: https://developer.android.com/guide/components/activities/parcelables-and-bundles.html
              */
 
+
+            //https://developer.android.com/guide/components/activities/parcelables-and-bundles.html
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if (parcelables != null && parcelables.length > 0) {
                 readTextFromTag((NdefMessage) parcelables[0]);
@@ -291,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
     @Nullable
     private NdefRecord createTextRecord(String s) {
         try {
+            //Take the  character enconding type
             language = Locale.getDefault().getLanguage().getBytes("UTF-8");
 
             final byte[] text = s.getBytes("UTF-8");
@@ -324,9 +321,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //NOT USED IN THIS VERSION!!!!!!!!!!!!!!
     /**
+     * NOT USED IN THIS VERSION!!!!!!
      * This method is the one which physically write the message into the tag.
-     *
      * @param tag
      * @param ndefMessage
      */
@@ -392,7 +390,6 @@ public class MainActivity extends AppCompatActivity {
             if (ndefFormatable == null) {
                 Toast.makeText(this, "Tag is not NDEF compatible", Toast.LENGTH_LONG).show();
             }
-
             ndefFormatable.connect();
 
             /**
@@ -403,7 +400,6 @@ public class MainActivity extends AppCompatActivity {
              */
             ndefFormatable.format(ndefMessage);
             ndefFormatable.close();
-
             Toast.makeText(this, "Tag formatted", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -412,8 +408,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Clean the TextView (changed to EditText)
-     *
+     * Clean the TextView (changed to EditText)     *
      * @param view
      */
     public void tglReadWriteOnClick(View view) {
@@ -421,8 +416,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method permits to convert an NdefRecord to a text
-     *
+     * This method permits to convert an NdefRecord to a text     *
      * @param ndefRecord
      * @return
      */
@@ -454,6 +448,7 @@ public class MainActivity extends AppCompatActivity {
      * @param ndefMessage
      */
 
+    //THIS METHOD READ FROM THE TAG; HERE
     private void readTextFromTag(NdefMessage ndefMessage) {
         NdefRecord[] ndefRecords = ndefMessage.getRecords();
         if (ndefRecords != null && ndefRecords.length > 0) {

@@ -10,11 +10,11 @@ import retrofit2.http.GET;
  * Created by matteo on 29/05/17.
  */
 
-public interface RetrofitService {
+public interface RFService {
 
-    public static final String BASE_URL = "https://raw.githubusercontent.com/";
+    public static final String BASE_URL = "http://dati.venezia.it/";
 
-    @GET("opendatajson/football.json/master/2016-17/it.1.json")
+    @GET("sites/default/files/dataset/opendata/previsione.json")
     Call<SchedaIntervento> getPojo(); //get the Pojo object
 
     public static Retrofit retrofit = new Retrofit.Builder()

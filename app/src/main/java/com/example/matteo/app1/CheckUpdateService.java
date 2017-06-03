@@ -31,16 +31,16 @@ import Models.SchedaIntervento;
 
 public class CheckUpdateService extends Service {
 
-    private static final int ONGOING_NOTIFICATION_ID = 1;
+
     private DatabaseReference mDatabase;
     private String child_macchine = "Macchine";
     private String child_schede = "schede";
     private String child_nominativo = "nome";
     private String name = "";
     private String indirizzo = "";
-    String s = "";
-    Query lastQuery;
-    ValueEventListener listener;
+    public String s = "";
+    public Query lastQuery;
+    public ValueEventListener listener;
 
     //from MyService to MainActivity
     final static String KEY_INT_FROM_SERVICE = "KEY_INT_FROM_SERVICE";
@@ -53,13 +53,12 @@ public class CheckUpdateService extends Service {
     final static String ACTION_MSG_TO_SERVICE = "MSG_TO_SERVICE";
 
     private String panicBotton = "";
-
-    MyServiceReceiver myServiceReceiver;
-    MyServiceThread myServiceThread;
-    int cnt;
-    Bundle bundle = new Bundle();
+    private MyServiceReceiver myServiceReceiver;
+    private MyServiceThread myServiceThread;
+    private int cnt;
+    private Bundle bundle = new Bundle();
     private String identificativoVeicolo;
-    MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
 
     @Nullable
     @Override
@@ -72,13 +71,7 @@ public class CheckUpdateService extends Service {
         Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_LONG).show();
         myServiceReceiver = new MyServiceReceiver();
         super.onCreate();
-
-
-        //identificativoVeicolo=intent.getStringExtra("id").toString().trim();
-
         System.out.println("GRAZIE A DIO VA OLTRE L'ON CREATE");
-
-
     }
 
     /**
@@ -112,6 +105,8 @@ public class CheckUpdateService extends Service {
     public void onDestroy() {
         Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_LONG).show();
         myServiceThread.setRunning(false);
+
+        //Stacco il broadcast receiver
         unregisterReceiver(myServiceReceiver);
 
         myServiceThread.interrupt();
@@ -138,8 +133,8 @@ public class CheckUpdateService extends Service {
                         .setContentTitle("My notification")
                         .setContentText("Hello World!")
                         .setContentIntent(pendingIntent);
-        NotificationManager mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
         // Builds the notification and issues it.
         //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Uri alarmSound = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.alarm_two_tones);
@@ -156,7 +151,6 @@ public class CheckUpdateService extends Service {
         public void onReceive(Context context, Intent intent) {
 
             String action = intent.getAction();
-
 
             if (action.equals(ACTION_MSG_TO_SERVICE)) {
                 String msg = intent.getStringExtra(KEY_MSG_TO_SERVICE);
@@ -176,7 +170,6 @@ public class CheckUpdateService extends Service {
                     case 0:
                         System.out.println("Headset is unplugged");
                         if (panicBotton.equals("t")) {
-
                             panicBotton = "";
                             startPanicButton();
                         }
@@ -204,7 +197,7 @@ public class CheckUpdateService extends Service {
     }
 
 
-    /*******************THREAD**********************************************************************/
+    /***************************************THREAD***************************************************/
 
     private class MyServiceThread extends Thread {
 
@@ -221,21 +214,19 @@ public class CheckUpdateService extends Service {
             cnt = 0;
             running = true;
 
-
             mDatabase = FirebaseDatabase.getInstance().getReference();
             lastQuery = mDatabase.child(child_macchine).child(identificativoVeicolo).child(child_schede).orderByKey().limitToLast(1);
 
-            final SchedaIntervento schedaIntervento=new SchedaIntervento();
+            final SchedaIntervento schedaIntervento = new SchedaIntervento();
             listener = lastQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     name = indirizzo = "";
 
-
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
 
                         name += " ";
-                       // System.out.println(snap.getKey());
+                        // System.out.println(snap.getKey());
 
                         descrizione = (snap.child("descrizioneEvento").getValue().toString());
                         schedaIntervento.setDescrizione(descrizione);
@@ -244,9 +235,7 @@ public class CheckUpdateService extends Service {
                         name += ", " + snap.child("last_name").getValue().toString();
                         schedaIntervento.setNome(name);
 
-
                         //codice.setText(snap.child("codice").getValue().toString());
-
 
                         codice = (snap.child("codice").getValue().toString());
                         schedaIntervento.setCodice(codice);
@@ -261,15 +250,14 @@ public class CheckUpdateService extends Service {
                         System.out.println("*****" + descrizione);
                         System.out.println("*****" + name);
 
-
                         String key = snap.getKey();
                         if (snap.child("primo").getValue().toString().trim().equals("true")) {
                             System.out.println("dentro");
                             sendNotification();
                             //setPrimoFalse(key);
                         }
-
                     }
+
                     Intent intent = new Intent();
                     intent.setAction(ACTION_UPDATE_MSG);
                     intent.putExtra(KEY_STRING_FROM_SERVICE, descrizione);

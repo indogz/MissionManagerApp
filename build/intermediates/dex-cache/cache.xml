@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/home/matteo/Scrivania/PORCO SWAPNMI/MissionManagerApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9af7ec7971c8aeed6c6357fc6752cb6aff111066/classes.dex" />
+        sha1="d10106a3d556c3bdc2f491dac056a0b5aba2f1ed">
+        <dex dex="/home/matteo/Scrivania/PORCO SWAPNMI/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_3c8fb244e63ecb58b33b8315907450d9a62a9a82/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -57,12 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/matteo/Scrivania/PORCO SWAPNMI/MissionManagerApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5a9e42365593ff7a2dfe43740effc1ca69dbfa20">
-        <dex dex="/home/matteo/Scrivania/RepoGoogle/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_241809772a3e2c95888b64fdf830fe5c058729c8/classes.dex" />
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/home/matteo/Scrivania/PORCO SWAPNMI/MissionManagerApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_480a36c1e922eb035ceee7699a14089c0d2d3d2d/classes.dex" />
     </item>
     <item
         is-multidex="true"
