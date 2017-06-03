@@ -233,7 +233,12 @@ public class CheckUpdateService extends Service {
 
                         name += snap.child("first_name").getValue().toString();
                         name += ", " + snap.child("last_name").getValue().toString();
+                        schedaIntervento.setCognome(snap.child("last_name").getValue().toString());
                         schedaIntervento.setNome(name);
+
+                        schedaIntervento.setComune(snap.child("street").getValue().toString());
+                        schedaIntervento.setVia(snap.child("city").getValue().toString());
+                        schedaIntervento.setCivico(snap.child("house_number").getValue().toString());
 
                         //codice.setText(snap.child("codice").getValue().toString());
 
@@ -266,6 +271,10 @@ public class CheckUpdateService extends Service {
                     intent.putExtra("descrizione", schedaIntervento.getDescrizione());
                     intent.putExtra("nome", schedaIntervento.getNome());
                     intent.putExtra("codice", schedaIntervento.getCodice());
+                    intent.putExtra("cognome", schedaIntervento.getCognome());
+                    intent.putExtra("civico", schedaIntervento.getCivico());
+                    intent.putExtra("comune", schedaIntervento.getComune());
+                    intent.putExtra("via", schedaIntervento.getVia());
 
                     sendBroadcast(intent);
                     System.out.println("Funziona" + indirizzo);

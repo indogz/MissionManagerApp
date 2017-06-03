@@ -148,6 +148,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         id = intent.getStringExtra("id");
 
         schedaIntervento.setAes_key(id); //Set key to encrypt and decrypt data
+        schedaIntervento.setId_destinatario(id);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -172,13 +173,14 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 } catch (InvalidKeyException e) {
                     e.printStackTrace();
                 }
+
                 Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);
                 System.out.println(myJson);
 
                 addStringToConsole("Json sent: " + myJson);
                 addStringToConsole("Indirizzo passato: " + addressToSend);
-                System.out.println(HTTPHelper.httpPostRequest(NavigationActivity.this, "matteo"));
+                addStringToConsole(HTTPHelper.httpPostRequest(NavigationActivity.this, schedaIntervento));
             }
         });
 
@@ -319,6 +321,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 schedaIntervento.setIndirizzo(intent.getStringExtra("indirizzo"));
                 schedaIntervento.setDescrizione(intent.getStringExtra("descrizione"));
                 schedaIntervento.setCodice(intent.getStringExtra("codice").toString().trim());
+                schedaIntervento.setCognome(intent.getStringExtra("cognome").toString().trim());
+                schedaIntervento.setComune(intent.getStringExtra("comune").toString().trim());
+                schedaIntervento.setVia(intent.getStringExtra("via").toString().trim());
+                schedaIntervento.setCivico(intent.getStringExtra("civico").toString().trim());
+
                 //SET THE ADDERESS WHERE TO GO
                 addressToSend = intent.getStringExtra("indirizzo");
 

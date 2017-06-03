@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.SchedaIntervento;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -32,11 +33,12 @@ public class HTTPHelper {
     private static String url = "http://www.ripasso.altervista.org/request.php?";
 
 
-    public static String httpPostRequest(Context context, String data) {
+    public static String httpPostRequest(Context context, SchedaIntervento schedaIntervento) {
         HttpClient httpclient = new DefaultHttpClient();
         System.out.println("Client creato");
         HttpPost httppost = new HttpPost(url);
         System.out.println("HttpPost creato");
+        HttpResponse response = null;
 
         try {
             /**
@@ -44,16 +46,29 @@ public class HTTPHelper {
              * in http request, i.e. www.example.com?key=value
              * .Technically it's like a Map based on a List
              */
-            
+
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             System.out.println("Lista creata");
-            nameValuePairs.add(new BasicNameValuePair("nome", data.trim()));
+
+            nameValuePairs.add(new BasicNameValuePair("nome", schedaIntervento.getNome()));
+            //nameValuePairs.add(new BasicNameValuePair("nome", "Matteo"));
+
+            nameValuePairs.add(new BasicNameValuePair("cognome", schedaIntervento.getCognome()));
+            nameValuePairs.add(new BasicNameValuePair("codice_colore", schedaIntervento.getCodice()));
+            nameValuePairs.add(new BasicNameValuePair("descrizione", schedaIntervento.getDescrizione()));
+            nameValuePairs.add(new BasicNameValuePair("id_mezzo", schedaIntervento.getId_destinatario()));
+            nameValuePairs.add(new BasicNameValuePair("comune", schedaIntervento.getVia()));
+            //nameValuePairs.add(new BasicNameValuePair("civico", schedaIntervento.getCivico()));
+            nameValuePairs.add(new BasicNameValuePair("via", schedaIntervento.getComune()));
+
             System.out.println("Lista aggiornata");
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             System.out.println("Entita' settata");
             // Execute HTTP Post Request
-            HttpResponse response = httpclient.execute(httppost);
+            response = httpclient.execute(httppost);
+            System.out.println(response.toString());
+
             System.out.println("Richiesta eseguita");
 
         } catch (ClientProtocolException e) {
@@ -64,6 +79,7 @@ public class HTTPHelper {
             System.out.println("ECCEZIONE NUMERO DUE");
         }
 
+        if (response.toString() != null) return "Registrato correttamente";
         return "Fino alla fine ci è arrivato";
 
     }

@@ -19,16 +19,23 @@ import Tools.AESHelper;
 
 public class SchedaIntervento {
 
-    private String nome;
-    private String cognome;
-    private String descrizione;
-    private String codice;
-    private String indirizzo;
-    private String tipologia;
-    private String id_destinatario;
-    private String key_firebase;
-    private String aes_key;
-    private String primo;
+    private String nome=" ";
+    private String cognome=" ";;
+    private String descrizione=" ";;
+    private String codice=" ";;
+    private String indirizzo=" ";;
+    private String tipologia=" ";;
+    private String id_destinatario=" ";;
+    private String key_firebase=" ";;
+    private String aes_key=" ";;
+    private String primo=" ";;
+
+    private String comune=" ";;
+    private String civico=" ";;
+    private String via=" ";;
+
+
+
 
 
     public SchedaIntervento(String nome, String cognome, String descrizione, String codice, String indirizzo) {
@@ -40,7 +47,33 @@ public class SchedaIntervento {
         AESHelper aesHelper = new AESHelper();
     }
 
+
+    public String getComune() {
+        return comune;
+    }
+
+    public String getCivico() {
+        return civico;
+    }
+
+    public String getVia() {
+        return via;
+    }
+
+    public void setComune(String comune) {
+        this.comune = comune;
+    }
+
+    public void setCivico(String civico) {
+        this.civico = civico;
+    }
+
+    public void setVia(String via) {
+        this.via = via;
+    }
+
     public SchedaIntervento() {
+
         AESHelper aesHelper = new AESHelper();
     }
 
