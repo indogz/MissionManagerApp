@@ -1,7 +1,5 @@
 package Models;
 
-import org.json.JSONArray;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
@@ -23,30 +21,17 @@ public class SchedaIntervento {
 
     private String nome = " ";
     private String cognome = " ";
-    ;
     private String descrizione = " ";
-    ;
     private String codice = " ";
-    ;
     private String indirizzo = " ";
-    ;
     private String tipologia = " ";
-    ;
     private String id_destinatario = " ";
-    ;
-    private String key_firebase = " ";
-    ;
+    private String dataOra = " ";
     private String aes_key = " ";
-    ;
     private String primo = " ";
-    ;
-
     private String comune = " ";
-    ;
     private String civico = " ";
-    ;
     private String via = " ";
-    ;
 
 
     public SchedaIntervento(String nome, String cognome, String descrizione, String codice, String indirizzo) {
@@ -116,8 +101,8 @@ public class SchedaIntervento {
         this.id_destinatario = id_destinatario;
     }
 
-    public void setKey_firebase(String key_firebase) {
-        this.key_firebase = key_firebase;
+    public void setDataOra(String dataOra) {
+        this.dataOra = dataOra;
     }
 
     public void setAes_key(String aes_key) {
@@ -152,8 +137,8 @@ public class SchedaIntervento {
         return id_destinatario;
     }
 
-    public String getKey_firebase() {
-        return key_firebase;
+    public String getDataOra() {
+        return dataOra;
     }
 
     public String getAes_key() {

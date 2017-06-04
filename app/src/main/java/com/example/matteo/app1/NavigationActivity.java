@@ -1,5 +1,6 @@
 package com.example.matteo.app1;
 
+import android.app.FragmentTransaction;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -56,6 +58,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import Fragments.SchedaInterventoFragment;
 import Fragments.WaterLevelForecastFragment;
 import Models.SchedaIntervento;
 import Tools.AESHelper;
@@ -469,6 +472,15 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+            SchedaInterventoFragment newFragment = new SchedaInterventoFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         }
 
