@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.matteo.app1.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
 import Controller.ForecastArrayAdapter;
 import Controller.RFService;
 import Models.WaterLevelForecast;
@@ -32,12 +38,11 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
     private String mParam1;
     private String mParam2;
 
-    ArrayList products;
+    ArrayList forecstList;
     String myJsonForecast = "";
+    ForecastArrayAdapter adapter;
     private RFService mService;
     protected WaterLevelForecast waterLevelForecast;
-
-
 
 
     public WaterLevelForecastFragment() {
@@ -56,8 +61,17 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), "Item: " + position + "\nname: " + ((WaterLevelForecast) products.get(position)).getData_previsionale() + "\n" +
-                "description: " + ((WaterLevelForecast) products.get(position)).getValore(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Previsione n: " + position + "\nPrevista il: " + ((WaterLevelForecast) forecstList.get(position)).getData_previsionale() + "\n" +
+                "description: " + ((WaterLevelForecast) forecstList.get(position)).getValore(), Toast.LENGTH_SHORT).show();
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.icon);
+
+        if (adapter.getItem(position).getTipo_estremale() != null && adapter.getItem(position).getTipo_estremale().equalsIgnoreCase("max")) {
+
+            imageView.setImageResource(R.mipmap.arrowup);
+        }
+
+
     }
 
 
@@ -66,7 +80,7 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
         super.onActivityCreated(savedInstanceState);
 
 
-        products = new ArrayList<>();
+        forecstList = new ArrayList<>();
         mService = RFService.retrofit.create(RFService.class);
         String s = "";
         try {
@@ -81,17 +95,15 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
 
         /**
          * SE BECCO IL DEMENTE CHE HA FATTO I JSON DEL COMUNE LO FACCIO DIVENTARE INTELLIGENTE
-         * A SUON DI JSON SULLE GENGIVE PORCO DIO
+         * A SUON DI JSON SULLE GENGIVE
          */
         try {
-
             s = s.replace("[", "{ \"dati\":[");
             s = s.replace("]", "]}");
             System.out.println("Nuovo s " + s);
 
             JSONObject ob = new JSONObject(s);
             JSONArray arr = ob.getJSONArray("dati");
-
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject o = arr.getJSONObject(i);
@@ -102,20 +114,22 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
                 waterLevelForecast.setData_previsionale(o.getString("DATA_ESTREMALE"));
                 waterLevelForecast.setValore(o.getString("VALORE"));
                 System.out.println(i + " " + o.getString("VALORE"));
-                products.add(waterLevelForecast);
+                forecstList.add(waterLevelForecast);
             }
-            System.out.println(products.toString());
+            System.out.println(forecstList.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-        products.add(new WaterLevelForecast("data previsionale", "valore previsionale"));
+        forecstList.add(new WaterLevelForecast("data previsionale", "valore previsionale"));
 
 
-        ForecastArrayAdapter adapter = new ForecastArrayAdapter(getActivity(), products);
+        adapter = new ForecastArrayAdapter(getActivity(), forecstList);
 
         setListAdapter(adapter);
+
+        adapter.getCount();
 
         getListView().setOnItemClickListener(this);
     }
@@ -150,7 +164,7 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
                 String line = "";
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line + "\n");
-                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+                    Log.d("Response: ", "> " + line);
                 }
                 return buffer.toString();
             } catch (MalformedURLException e) {

@@ -2,7 +2,9 @@ package Models;
 
 import org.json.JSONArray;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -19,23 +21,32 @@ import Tools.AESHelper;
 
 public class SchedaIntervento {
 
-    private String nome=" ";
-    private String cognome=" ";;
-    private String descrizione=" ";;
-    private String codice=" ";;
-    private String indirizzo=" ";;
-    private String tipologia=" ";;
-    private String id_destinatario=" ";;
-    private String key_firebase=" ";;
-    private String aes_key=" ";;
-    private String primo=" ";;
+    private String nome = " ";
+    private String cognome = " ";
+    ;
+    private String descrizione = " ";
+    ;
+    private String codice = " ";
+    ;
+    private String indirizzo = " ";
+    ;
+    private String tipologia = " ";
+    ;
+    private String id_destinatario = " ";
+    ;
+    private String key_firebase = " ";
+    ;
+    private String aes_key = " ";
+    ;
+    private String primo = " ";
+    ;
 
-    private String comune=" ";;
-    private String civico=" ";;
-    private String via=" ";;
-
-
-
+    private String comune = " ";
+    ;
+    private String civico = " ";
+    ;
+    private String via = " ";
+    ;
 
 
     public SchedaIntervento(String nome, String cognome, String descrizione, String codice, String indirizzo) {
@@ -165,10 +176,14 @@ public class SchedaIntervento {
     }
 
 
+    public void decryptAll(AESHelper aesHelper) throws GeneralSecurityException, IOException {
+        String key = this.getAes_key();
+        this.setNome(aesHelper.decrypt(this.getNome(), key));
+    }
 
-    public void decryptAll(AESHelper aesHelper) {
-
-
+    public void decryptAll(String key) throws GeneralSecurityException, IOException {
+        AESHelper aesHelper = new AESHelper();
+        this.setNome(aesHelper.decrypt(this.getNome(), key));
     }
 
 

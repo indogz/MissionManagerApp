@@ -22,7 +22,7 @@ public class WaterLevelForecast {
     private String data_estremale;
     @SerializedName("TIPO_ESTREMALE")
     @Expose
-    private String tipo_estremale;
+    private String tipo_estremale="max";
     @SerializedName("VALORE")
     @Expose
     private String valore;

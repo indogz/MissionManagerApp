@@ -65,7 +65,7 @@ public class ForecastArrayAdapter extends ArrayAdapter<WaterLevelForecast> {
             // Log steTag()
             Log.d(TAG, "getTag() for object in position: " + position);
         }
-        viewHolder.image.setImageResource(R.mipmap.ic_launcher);
+        viewHolder.image.setImageResource(R.mipmap.wave);
         viewHolder.name.setText(p.getData_previsionale());
         viewHolder.description.setText(p.getValore());
         return rowView;
