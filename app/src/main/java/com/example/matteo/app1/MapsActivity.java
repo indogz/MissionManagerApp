@@ -145,9 +145,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;
-            }
-
-            //I take just the first result even if I've got list of 5 different LAT;LNG results
+            }            //I take just the first result even if I've got list of 5 different LAT;LNG results
             Address location = address.get(0);
             location.getLatitude();
             location.getLongitude();

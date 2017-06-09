@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/backgound"
     android:orientation="vertical"
+    android:paddingTop="130dp"
     tools:context="com.example.matteo.app1.MainActivity">
 
 
@@ -17,7 +18,7 @@
         android:hint="Data appear here"
         android:text="Mike India"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="40dp"
         />
 
     <EditText

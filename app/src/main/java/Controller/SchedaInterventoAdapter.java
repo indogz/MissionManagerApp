@@ -74,13 +74,14 @@ public class SchedaInterventoAdapter extends ArrayAdapter<SchedaIntervento> {
             Log.d(TAG, "getTag() for object in position: " + position);
         }
 
-        try {
-            p.decryptAll(p.getAes_key());
+      /**  try {
+            //if(p.getNome().length()>15)
+            //p.decryptAll(p.getAes_key());
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }**/
         viewHolder.image.setImageResource(R.mipmap.wave);
         viewHolder.name.setText(p.getNome());
         viewHolder.description.setText("Rensponder: " + p.getAes_key());

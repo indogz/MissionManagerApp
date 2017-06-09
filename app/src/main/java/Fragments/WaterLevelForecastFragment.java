@@ -63,23 +63,16 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), "Previsione n: " + position + "\nPrevista il: " + ((WaterLevelForecast) forecstList.get(position)).getData_previsionale() + "\n" +
                 "description: " + ((WaterLevelForecast) forecstList.get(position)).getValore(), Toast.LENGTH_SHORT).show();
-
         ImageView imageView = (ImageView) view.findViewById(R.id.icon);
-
         if (adapter.getItem(position).getTipo_estremale() != null && adapter.getItem(position).getTipo_estremale().equalsIgnoreCase("max")) {
-
             imageView.setImageResource(R.mipmap.arrowup);
         }
-
-
     }
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
         forecstList = new ArrayList<>();
         mService = RFService.retrofit.create(RFService.class);
         String s = "";
@@ -121,9 +114,7 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
             e.printStackTrace();
         }
 
-
         forecstList.add(new WaterLevelForecast("data previsionale", "valore previsionale"));
-
 
         adapter = new ForecastArrayAdapter(getActivity(), forecstList);
 
@@ -140,7 +131,6 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
     String url = "http://dati.venezia.it/sites/default/files/dataset/opendata/previsione.json";
 
     private class JsonTask extends AsyncTask<String, String, String> {
-
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -197,72 +187,5 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
             System.out.println("Result" + myJsonForecast);
         }
     }
-
-/*
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_patient_emergency_story, container, false);
-
-        textView = (TextView) view.findViewById(R.id.fragmentPatientView);
-        textView.setText("Sembrerebbe funzionare");
-
-        String url = "http://dati.venezia.it/sites/default/files/dataset/opendata/previsione.json";
-        new JsonTask().execute(url);
-
-
-        return view;
-    }
-
-    TextView textView;
-    ProgressDialog pd;
-
-
-
-
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-
-    public static WaterLevelForecastFragment newInstance(String param1, String param2) {
-        WaterLevelForecastFragment fragment = new WaterLevelForecastFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
 }
 

@@ -44,11 +44,12 @@ public class HTTPHelper {
             /**
              * NameValuePair is a special <Key, Value> pair which is used to represent parameters
              * in http request, i.e. www.example.com?key=value
-             * .Technically it's like a Map based on a List
+             * Technically it's like a Map based on a List
              */
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             System.out.println("Lista creata");
+
 
             nameValuePairs.add(new BasicNameValuePair("nome", schedaIntervento.getNome()));
             //nameValuePairs.add(new BasicNameValuePair("nome", "Matteo"));

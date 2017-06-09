@@ -81,7 +81,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     private String child_macchine = "Macchine";
     private String child_schede = "schede";
     private String child_nominativo = "nome";
-    private SchedaIntervento schedaIntervento;
+    public SchedaIntervento schedaIntervento;
     private TextView myConsoleView;
     private Animation animation = null;
     private AESHelper aesHelper;
@@ -159,7 +159,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             public void onClick(View view) {
                 Snackbar.make(view, "RX Registred", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                try {
+                /*try {
                     schedaIntervento.encryptAll(aesHelper);
                 } catch (NoSuchPaddingException e) {
                     e.printStackTrace();
@@ -175,7 +175,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                     e.printStackTrace();
                 } catch (InvalidKeyException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 Gson gson = new Gson();
                 String myJson = gson.toJson(schedaIntervento);

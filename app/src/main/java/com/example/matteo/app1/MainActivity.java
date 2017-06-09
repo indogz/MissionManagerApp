@@ -41,20 +41,14 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private TextView mtextView;
     private TextView identificativoVeicolo;
-
     private TextView nome;
     private TextView strada;
     private TextView codice;
     private TextView descrizione;
-
     private EditText mNameFiled;
     private EditText mEmailField;
-
     private DatabaseReference ref;
-
     public String id;
-
-
     protected NfcAdapter nfcAdapter;
     protected PendingIntent pendingIntent;
     protected IntentFilter[] intentFilters;
@@ -67,14 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private NfcConnectionChecker nfcConnectionChecker;
     private Switch nfcLogin;
 
-    public static String seedValue = "I AM UNBREAKABLE";
-    public static String MESSAGE = "No one can read this message without decrypting me.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         nfcAdapter = nfcAdapter.getDefaultAdapter(this);
         txtTagContent = (EditText) findViewById(R.id.txtTagContent);
@@ -385,6 +376,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private void formatTag(Tag tag, NdefMessage ndefMessage) {
         try {
+
+            /**
+             * Tag is an immutable object that represents the state of a NFC tag at the time of discovery.
+             * It can be used as a handle to TagTechnology classes to perform advanced operations,
+             * or directly queried for its ID via getId() and the set of technologies it contains via getTechList().
+             * Arrays passed to and returned by this class are not cloned, so be careful not to modify them.
+             * See more at: https://developer.android.com/reference/android/nfc/Tag.html
+             */
+
+
             //Acquire a NdefFormatable object using get(Tag).
             NdefFormatable ndefFormatable = NdefFormatable.get(tag);
             if (ndefFormatable == null) {
@@ -444,6 +445,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is the one which physically write the message into the tag.
+     * NDEF data is encapsulated inside a message (NdefMessage) that contains one or more records (NdefRecord).
      *
      * @param ndefMessage
      */

@@ -13,6 +13,8 @@ import javax.crypto.NoSuchPaddingException;
 
 import Tools.AESHelper;
 
+import static java.net.URLEncoder.encode;
+
 /**
  * Created by matteo on 28/05/17.
  */
@@ -74,23 +76,23 @@ public class SchedaIntervento {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim();
     }
 
     public void setCognome(String cognome) {
-        this.cognome = cognome;
+        this.cognome = cognome.trim();
     }
 
     public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+        this.descrizione = descrizione.trim();
     }
 
     public void setCodice(String codice) {
-        this.codice = codice;
+        this.codice = codice.trim();
     }
 
     public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
+        this.indirizzo = indirizzo.trim();
     }
 
     public void setTipologia(String tipologia) {
@@ -169,6 +171,11 @@ public class SchedaIntervento {
     public void decryptAll(String key) throws GeneralSecurityException, IOException {
         AESHelper aesHelper = new AESHelper();
         this.setNome(aesHelper.decrypt(this.getNome(), key));
+    }
+
+    public String getEncodedName(String s){
+        return encode(s);
+
     }
 
 

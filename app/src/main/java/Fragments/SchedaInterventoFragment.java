@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.matteo.app1.NavigationActivity;
 import com.example.matteo.app1.R;
 
 import org.json.JSONArray;
@@ -33,7 +34,21 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
     //String myJsonForecast = "";
     SchedaInterventoAdapter adapter;
     private RFService mService;
-    protected SchedaIntervento schedaIntervento;
+    protected SchedaIntervento schedaIntervento, sa;
+
+
+    /**
+     * Il design pattern Viewholder permette di accedere ad ogni elemento di una lista senza che ci
+     * sia il bisogno di ricaricarla ad ogni scroll. In pratica evita di richiamare più volte findViewById()
+     * e l’inflater per aggiornare il layout e ridurre notevolmente il lag.
+     * Si realizza quindi una sorta di cache per l’inflater.
+     * Passi per applicare il pattern:
+     * 1. Si crea una classe statica o enumerazione che andrà a contenere gli oggetti della lista
+     * 2. La prima volta che viene caricato il layout bisogna chiamare l’inflater per istanziare il
+     *    layout ed ottenere l’oggetto View derivante. Una volta collegate le referenze della classe
+     *    agli oggetti de layout tramite findViewById(), impostiamo il ViewHolder come tag.
+     * 3. Successivamente il layout non è null e quindi vuoto perciò non si deve richiamare l’inflater, ma possiamo accedere ai campi della classe statica. In questo caso ottengo l’oggetto istanziato tramite getTag() e procedo come desidero.
+     */
 
 
     public SchedaInterventoFragment() {
@@ -65,11 +80,20 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        sa=((NavigationActivity)getActivity()).schedaIntervento;
 
+
+        Toast.makeText(getActivity(), sa.getCognome(), Toast.LENGTH_SHORT).show();
         schedaList = new ArrayList<>();
         mService = RFService.retrofit.create(RFService.class);
         String s = "";
-        String url = "http://ripasso.altervista.org/getEncodedScheda.php?";
+
+
+        String url = "http://ripasso.altervista.org/getEncodedScheda.php?nome="+sa.getCognome().toLowerCase().trim();
+
+        /**
+         * QUA IO RIPRENDO UN JSON PER CUI DEVO METTERE NELL'URL I PARAMETRI
+         */
         try {
             s = new JsonTask()
                     .execute(url)
@@ -84,7 +108,6 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
          * SE I JSON VENGONO FATTI BENE COME LI FACCIO IO POI I PROGRAMMATORI NON DEVONO BESTEMMIARE
          */
         try {
-
             System.out.println("Nuovo s " + s);
 
             JSONObject ob = new JSONObject(s);
@@ -121,5 +144,8 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
 
         getListView().setOnItemClickListener(this);
     }
+
+
+
 }
 
