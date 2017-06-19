@@ -466,13 +466,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             intent.putExtra("address", addressToSend);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
-            Intent intent = new Intent(NavigationActivity.this, ToolsActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
             SchedaInterventoFragment newFragment = new SchedaInterventoFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -481,6 +474,12 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             transaction.replace(R.id.fragment_container, newFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+
 
         }
 

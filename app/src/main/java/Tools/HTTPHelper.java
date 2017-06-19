@@ -27,9 +27,7 @@ import okhttp3.RequestBody;
 @SuppressWarnings("deprecation")
 public class HTTPHelper {
 
-    private OkHttpClient okHttpClient;
-    private Request request;
-    private RequestBody requestBody;
+
     private static String url = "http://www.ripasso.altervista.org/request.php?";
 
 
