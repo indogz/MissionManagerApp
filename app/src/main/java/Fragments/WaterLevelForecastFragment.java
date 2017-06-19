@@ -87,8 +87,7 @@ public class WaterLevelForecastFragment extends ListFragment implements AdapterV
 
 
         /**
-         * SE BECCO IL DEMENTE CHE HA FATTO I JSON DEL COMUNE LO FACCIO DIVENTARE INTELLIGENTE
-         * A SUON DI JSON SULLE GENGIVE
+         * I JSON DEL COMUNE NON SONO VALIDI, NECESSITANO DI MODIFICA COME SOTTO
          */
         try {
             s = s.replace("[", "{ \"dati\":[");

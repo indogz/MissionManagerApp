@@ -92,7 +92,7 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
         String url = "http://ripasso.altervista.org/getEncodedScheda.php?nome="+sa.getCognome().toLowerCase().trim();
 
         /**
-         * QUA IO RIPRENDO UN JSON PER CUI DEVO METTERE NELL'URL I PARAMETRI
+         * RIPRENDO UN JSON PER CUI DEVO METTERE NELL'URL I PARAMETRI
          */
         try {
             s = new JsonTask()
@@ -105,7 +105,7 @@ public class SchedaInterventoFragment extends ListFragment implements AdapterVie
 
 
         /**
-         * SE I JSON VENGONO FATTI BENE COME LI FACCIO IO POI I PROGRAMMATORI NON DEVONO BESTEMMIARE
+         * I JSON DEL COMUNE NON SONO VALIDI, HO DOVUTO MODIFICARLI
          */
         try {
             System.out.println("Nuovo s " + s);

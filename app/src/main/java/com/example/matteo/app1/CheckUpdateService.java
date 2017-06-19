@@ -71,7 +71,7 @@ public class CheckUpdateService extends Service {
         Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_LONG).show();
         myServiceReceiver = new MyServiceReceiver();
         super.onCreate();
-        System.out.println("GRAZIE A DIO VA OLTRE L'ON CREATE");
+        System.out.println("OLTRE L'ON CREATE");
     }
 
     /**
